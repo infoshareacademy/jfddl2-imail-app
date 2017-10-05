@@ -15,20 +15,7 @@ class App extends React.Component {
         return (
             <Router>
                 <Grid>
-                    <MainMenu/>
-                    <Route path="/tasker" component={Tasker}/>
-                    <Route path="/students" component={Students}/>
-                    <Route path="/groups" component={Groups}/>
-                    <Route
-                        path="/counter"
-                        render={
-                            props =>
-                                <Counter {...props}
-                                         title="Foo"
-                                         delta={10}
-                                         startFrom={0}
-                                />
-                        }/>
+
                 </Grid>
             </Router>
         )

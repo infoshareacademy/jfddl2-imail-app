@@ -106,4 +106,4 @@ class ListingBase extends React.Component {
 
 
 export default ListingBase
-// as
+

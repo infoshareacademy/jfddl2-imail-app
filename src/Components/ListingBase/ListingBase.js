@@ -41,7 +41,7 @@ class ListingBase extends React.Component {
                         }}>
                             <thead>
                             <tr>
-                                <th>Lp</th>
+                                <th>ID</th>
                                 <th>Imie i nazwisko</th>
                                 <th>Adres e-mail</th>
                                 <th>Miasto</th>

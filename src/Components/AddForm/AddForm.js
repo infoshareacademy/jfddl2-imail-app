@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 class AddForm extends React.Component {
     constructor() {
         super();
@@ -54,11 +55,15 @@ class AddForm extends React.Component {
                     value={this.state.name}
                     onChange={this.handleNameInputChange}
                 />
-                    adres e-mail <br/><input
+                    <br/>
+                    adres e-mail <input
                     type="text"
                     value={this.state.email}
                     onChange={this.handleEmailInputChange}
-                />
+                /><br/>
+                    kobieta <input type="checkbox" onChange={this.updateCheckbox} checked={this.state.is_checked} ></input>
+                    mężczyzna <input type="checkbox" onChange={this.updateCheckbox} checked={this.state.is_checked} ></input>
+                    <br/>
                     <button onClick={this.handleAddUser}>
                         Zapisz
                     </button>

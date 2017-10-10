@@ -8,7 +8,8 @@ class ListingBase extends React.Component {
     state = {
         groups: null,
         fetching: false,
-        error: null
+        error: null,
+        saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
     }
 
     componentDidMount() {
@@ -21,20 +22,20 @@ class ListingBase extends React.Component {
         ).then(
             response => response.json()
         ).then(
-            groups => this.setState({ groups, fetching: false })
+            users => this.setState({ users: users.concat(this.state.saveUsers), fetching: false })
         ).catch(
             error => this.setState({ error, fetching: false })
         )
     }
 
     render() {
-        const { groups, error, fetching } = this.state
+        const { users, error, fetching } = this.state
 
         return (
             <div>
                 <h1>Baza</h1>
                 {
-                    groups !== null ?
+                    users !== null ?
                         <Table striped bordered condensed hover style={{
                             marginTop: 20
                         }}>
@@ -49,7 +50,7 @@ class ListingBase extends React.Component {
                             </thead>
                             <tbody>
                             {
-                                groups && groups.map(
+                                users && users.map(
                                     ({ id, fullname, city, gender,email }, index, allGroups) => (
                                         <tr key={id}>
                                             <td>
@@ -80,7 +81,7 @@ class ListingBase extends React.Component {
                         <p>Brak wyników</p>
                 }
                 {
-                    groups !== null ?
+                    users !== null ?
                         null :
                         <p>Brak wyników</p>
                 }

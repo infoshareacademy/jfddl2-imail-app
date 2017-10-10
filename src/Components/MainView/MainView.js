@@ -28,10 +28,10 @@ const MainMenu = () => (
                 </NavItem>
             </LinkContainer>
 
-            <LinkContainer to="/">
+            <LinkContainer to="/Search">
                 <NavItem>Wyszukaj</NavItem>
             </LinkContainer>
-            <LinkContainer to="/">
+            <LinkContainer to="/ListingBase">
                 <NavItem>Wyświetl liste</NavItem>
             </LinkContainer>
         </Nav>

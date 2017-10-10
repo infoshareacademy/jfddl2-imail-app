@@ -1,4 +1,6 @@
 import React from 'react'
+import { Table, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 
 class ListingBase extends React.Component {
@@ -33,11 +35,48 @@ class ListingBase extends React.Component {
                 <h1>Baza</h1>
                 {
                     groups !== null ?
-                        groups.slice(0,15).map(
-                        ({ id, avatar, fullname, email, gender, city}, index, allGroups) => (
-                            <li key={id}> {++index} {fullname} {email} {gender} {city}<img src={avatar} /></li>
-                        )
-                        ) :
+                        <Table striped bordered condensed hover style={{
+                            marginTop: 20
+                        }}>
+                            <thead>
+                            <tr>
+                                <th>Lp</th>
+                                <th>Imie i nazwisko</th>
+                                <th>Adres e-mail</th>
+                                <th>Miasto</th>
+                                <th>Płeć</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                groups && groups.map(
+                                    ({ id, fullname, city, gender,email }, index, allGroups) => (
+                                        <tr key={id}>
+                                            <td>
+                                                {id}
+                                            </td>
+                                            <td>
+                                                {fullname}
+                                            </td>
+                                            <td>
+                                                {email}
+                                            </td>
+                                            <td>
+                                                {city}
+                                            </td>
+                                            <td>
+                                                {gender}
+                                            </td>
+                                            <td>
+                                                <Link to={'/groups/' + id}>Wyświetl szczególy</Link>
+                                            </td>
+                                        </tr>
+                                    )
+                                )
+                            }
+                            </tbody>
+
+                        </Table> :
                         <p>Brak wyników</p>
                 }
                 {
@@ -68,4 +107,3 @@ class ListingBase extends React.Component {
 
 export default ListingBase
 
-// sdfsdf

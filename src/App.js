@@ -14,6 +14,7 @@ import FinalResult from './Components/FinalResult'
 import Login from "./Components/Login/Login";
 import ListingBase from "./Components/ListingBase/ListingBase";
 
+
 class App extends React.Component {
     render() {
         return (
@@ -25,7 +26,7 @@ class App extends React.Component {
                     <Route path ="/AddForm" component ={AddForm}/>
                     <Route path ="/Login" component ={Login}/>
                     <Route path ="/FinalResult" component ={FinalResult}/>
-                    <ListingBase>dfgdhd</ListingBase>
+                    <Route path ="/ListingBase" component ={ListingBase}/>
                 </Grid>
             </Router>
         )

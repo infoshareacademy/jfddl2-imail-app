@@ -24,6 +24,18 @@ class AddForm extends React.Component {
         });
     }
 
+    handleCityInputChange = (event) => {
+        this.setState({
+            city: event.target.value
+        });
+    }
+
+    handleGenderInputChange = (event) => {
+        this.setState({
+            gender: event.target.value
+        });
+    }
+
     handleAddUser = (event) => {
         event.preventDefault();
 
@@ -32,8 +44,8 @@ class AddForm extends React.Component {
             avatar: "http://www.iconsdb.com/icons/preview/dark-gray/businessman-xxl.png",
             fullname: this.state.name,
             email: this.state.email,
-            gender: 'Unknown',
-            city: 'Unknown'
+            gender: this.state.gender,
+            city: this.state.city
         };
 
         this.setState({
@@ -61,8 +73,17 @@ class AddForm extends React.Component {
                     value={this.state.email}
                     onChange={this.handleEmailInputChange}
                 /><br/>
-                    kobieta <input type="checkbox" onChange={this.updateCheckbox} checked={this.state.is_checked} ></input>
-                    mężczyzna <input type="checkbox" onChange={this.updateCheckbox} checked={this.state.is_checked} ></input>
+                    płeć <input
+                    type="text"
+                    value={this.state.gender}
+                    onChange={this.handleGenderInputChange}
+                />
+                    <br/>
+                    miasto <input
+                    type="text"
+                    value={this.state.city}
+                    onChange={this.handleCityInputChange}
+                />
                     <br/>
                     <button onClick={this.handleAddUser}>
                         Zapisz

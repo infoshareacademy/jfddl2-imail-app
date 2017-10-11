@@ -11,8 +11,9 @@ import MainView from './Components/MainView/MainView'
 import Added from './Components/Added/Added'
 import AddForm from './Components/AddForm/AddForm'
 import FinalResult from './Components/FinalResult'
-import Login from "./Components/Login/Login";
-import ListingBase from "./Components/ListingBase/ListingBase";
+import Login from "./Components/Login/Login"
+import ListingBase from "./Components/ListingBase/ListingBase"
+import SearchForm from "./Components/SearchForm/SearchForm"
 
 
 class App extends React.Component {
@@ -25,8 +26,9 @@ class App extends React.Component {
                     <Route path ="/Added" component ={Added}/>
                     <Route path ="/AddForm" component ={AddForm}/>
                     <Route path ="/Login" component ={Login}/>
-                    <Route path ="/FinalResult" component ={FinalResult}/>
+                    <Route path ="/users/:id" component ={FinalResult}/>
                     <Route path ="/ListingBase" component ={ListingBase}/>
+                    <Route path ="/SearchForm" component ={SearchForm}/>
                 </Grid>
             </Router>
         )

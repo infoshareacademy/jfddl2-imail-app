@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 class AddForm extends React.Component {
     constructor() {
         super();
@@ -7,6 +8,8 @@ class AddForm extends React.Component {
         this.state = {
             name: '',
             email: '',
+            gender: '',
+            city: '',
             saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
         }
     }
@@ -23,16 +26,28 @@ class AddForm extends React.Component {
         });
     }
 
+    handleCityInputChange = (event) => {
+        this.setState({
+            city: event.target.value
+        });
+    }
+
+    handleGenderInputChange = (event) => {
+        this.setState({
+            gender: event.target.value
+        });
+    }
+
     handleAddUser = (event) => {
         event.preventDefault();
 
         let newUser = {
             id: Date.now(),
-            avatar: "http://www.iconsdb.com/icons/preview/dark-gray/businessman-xxl.png",
+            avatar: "https://llw.azureedge.net/2017-07-04T13.10.30.308Z/images/avatar-default.svg",
             fullname: this.state.name,
             email: this.state.email,
-            gender: 'Unknown',
-            city: 'Unknown'
+            gender: this.state.gender,
+            city: this.state.city
         };
 
         this.setState({
@@ -54,21 +69,40 @@ class AddForm extends React.Component {
                     value={this.state.name}
                     onChange={this.handleNameInputChange}
                 />
-                    adres e-mail <br/><input
+                    <br/>
+                    adres e-mail <input
                     type="text"
                     value={this.state.email}
                     onChange={this.handleEmailInputChange}
+                /><br/>
+                    miasto <input
+                    type="text"
+                    value={this.state.city}
+                    onChange={this.handleCityInputChange}
+                /><br/>
+                    mężczyzna <input
+                    type="radio"
+                    name="name"
+                    value="mężczyzna"
+                    onChange={this.handleGenderInputChange}
                 />
+                    kobieta <input
+                    type="radio"
+                    name="name"
+                    value="kobieta"
+                    onChange={this.handleGenderInputChange}
+                />
+                    <br/>
                     <button onClick={this.handleAddUser}>
                         Zapisz
                     </button>
                 </form>
 
-                <ul>
-                    {this.state.saveUsers.map((user, index) =>
-                        <li key={index}>{user.fullname}</li>
-                    )}
-                </ul>
+                {/*<ul>*/}
+                    {/*{this.state.saveUsers.map((user, index) =>*/}
+                        {/*<li key={index}>{user.fullname}</li>*/}
+                    {/*)}*/}
+                {/*</ul>*/}
             </div>
         )
     }

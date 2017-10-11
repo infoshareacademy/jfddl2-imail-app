@@ -73,7 +73,7 @@ class ListingBase extends React.Component {
                                                 <img src={avatar}/>
                                             </td>
                                             <td>
-                                                <Link to={'/users/' + id}>Wyświetl szczególy</Link>
+                                                <Link to={'/final-results/' + id}>Wyświetl szczególy</Link>
                                             </td>
                                         </tr>
                                     )

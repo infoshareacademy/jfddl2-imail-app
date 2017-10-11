@@ -8,6 +8,8 @@ class AddForm extends React.Component {
         this.state = {
             name: '',
             email: '',
+            gender: '',
+            city: '',
             saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
         }
     }
@@ -73,9 +75,16 @@ class AddForm extends React.Component {
                     value={this.state.email}
                     onChange={this.handleEmailInputChange}
                 /><br/>
-                    płeć <input
-                    type="text"
-                    value={this.state.gender}
+                    mężczyzna <input
+                    type="radio"
+                    name="name"
+                    value="mężczyzna"
+                    onChange={this.handleGenderInputChange}
+                />
+                    kobieta <input
+                    type="radio"
+                    name="name"
+                    value="kobieta"
                     onChange={this.handleGenderInputChange}
                 />
                     <br/>

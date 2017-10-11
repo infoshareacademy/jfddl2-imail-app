@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 class ListingBase extends React.Component {
 
     state = {
-        groups: null,
+        users: null,
         fetching: false,
         error: null,
         saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
@@ -46,12 +46,13 @@ class ListingBase extends React.Component {
                                 <th>Adres e-mail</th>
                                 <th>Miasto</th>
                                 <th>Płeć</th>
+                                <th>Zdjęcie</th>
                             </tr>
                             </thead>
                             <tbody>
                             {
                                 users && users.map(
-                                    ({ id, fullname, city, gender,email }, index, allGroups) => (
+                                    ({ id, fullname, city, gender,email,avatar }, index, allGroups) => (
                                         <tr key={id}>
                                             <td>
                                                 {id}
@@ -69,7 +70,10 @@ class ListingBase extends React.Component {
                                                 {gender}
                                             </td>
                                             <td>
-                                                <Link to={'/groups/' + id}>Wyświetl szczególy</Link>
+                                                <img src={avatar}/>
+                                            </td>
+                                            <td>
+                                                <Link to={'/users/' + id}>Wyświetl szczególy</Link>
                                             </td>
                                         </tr>
                                     )

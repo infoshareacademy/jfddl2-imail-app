@@ -25,12 +25,12 @@ class App extends React.Component {
                     <Route path ="/Added" component ={Added}/>
                     <Route path ="/AddForm" component ={AddForm}/>
                     <Route path ="/Login" component ={Login}/>
-                    <Route path ="/FinalResult" component ={FinalResult}/>
+                    <Route path ="/users/:id" component ={FinalResult}/>
                     <Route path ="/ListingBase" component ={ListingBase}/>
                 </Grid>
             </Router>
         )
     }
 }
-
+// userDisplay
 export default App

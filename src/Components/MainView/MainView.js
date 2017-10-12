@@ -35,6 +35,9 @@ const MainMenu = () => (
             <LinkContainer to="/ListingBase">
                 <NavItem>Wyświetl całą liste</NavItem>
             </LinkContainer>
+            <LinkContainer to="/Favorite">
+                <NavItem>Ulubione</NavItem>
+            </LinkContainer>
         </Nav>
     </Navbar>
 )

@@ -26,6 +26,43 @@ const filterGroups = [
 
 
 class SearchForm extends React.Component {
+
+    state = {
+        activeFilterNames: [],
+        currentSearchPhrase: ''
+    }
+
+    handleSearchPhraseChange = event => {
+        this.setState({
+            currentSearchPhrase: event.target.value
+        })
+    }
+
+    handleToggleFilterClick = event => {
+        const filterName = event.target.dataset.filterName
+        const { activeFilterNames } = this.state
+        const filterNameExists = activeFilterNames.includes(filterName)
+
+        this.setState({
+            activeFilterNames:
+                activeFilterNames.filter(
+                    activeFilterName => {
+                        const filterNamePrefix = filterName.split('_')[0]
+                        const activeFilterNamePrefix = activeFilterName.split('_')[0]
+
+                        return filterNamePrefix !== activeFilterNamePrefix
+                    }
+                ).concat(filterNameExists ? [] : [filterName])
+        })
+    }
+
+    handleResetClick = () => {
+        this.setState({
+            activeFilterNames: []
+        })
+    }
+
+
     render() {
         return (
             <form>

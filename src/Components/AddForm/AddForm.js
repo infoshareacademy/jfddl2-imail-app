@@ -89,13 +89,13 @@ class AddForm extends React.Component {
                 /><br/>
                     mężczyzna <input
                     type="radio"
-                    name="name"
+                    name="gender"
                     value="mężczyzna"
                     onChange={this.handleGenderInputChange}
                 />
                     kobieta <input
                     type="radio"
-                    name="name"
+                    name="gender"
                     value="kobieta"
                     onChange={this.handleGenderInputChange}
                 />

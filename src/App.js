@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
 } from 'react-router-dom'
+
 import {
     Grid
 } from 'react-bootstrap'
@@ -14,6 +15,8 @@ import FinalResult from './Components/FinalResult'
 import Login from "./Components/Login/Login"
 import ListingBase from "./Components/ListingBase/ListingBase"
 import SearchForm from "./Components/SearchForm/SearchForm"
+import Favourite from "./Components/Favourite/Favourite"
+import ShareButton from "./Components/ShareButton/ShareButton"
 
 
 class App extends React.Component {
@@ -26,13 +29,15 @@ class App extends React.Component {
                     <Route path ="/Added" component ={Added}/>
                     <Route path ="/AddForm" component ={AddForm}/>
                     <Route path ="/Login" component ={Login}/>
-                    <Route path ="/users/:id" component ={FinalResult}/>
+                    <Route path ="/final-results/:id" component ={FinalResult}/>
                     <Route path ="/ListingBase" component ={ListingBase}/>
                     <Route path ="/SearchForm" component ={SearchForm}/>
+                    <Route path ="/Favourite" component ={Favourite}/>
+                    <Route path ="/ShareButton" component ={ShareButton}/>
                 </Grid>
             </Router>
         )
     }
 }
-// userDisplay
+
 export default App

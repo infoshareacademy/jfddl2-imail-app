@@ -47,6 +47,7 @@ class ListingBase extends React.Component {
                                 <th>Miasto</th>
                                 <th>Płeć</th>
                                 <th>Zdjęcie</th>
+                                <th>Szczegóły</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -73,7 +74,7 @@ class ListingBase extends React.Component {
                                                 <img src={avatar}/>
                                             </td>
                                             <td>
-                                                <Link to={'/final-results/' + id}>Wyświetl szczególy</Link>
+                                                <Link to={'/final-results/' + id}>Zobacz</Link>
                                             </td>
                                         </tr>
                                     )

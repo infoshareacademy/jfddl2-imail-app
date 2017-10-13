@@ -33,7 +33,6 @@ const MainMenu = () => (
         <LinkContainer to="/SearchForm">
           <NavItem>Wyszukaj</NavItem>
         </LinkContainer>
-
         <LinkContainer to="/ListingBase">
           <NavItem>Wyświetl całą liste</NavItem>
         </LinkContainer>

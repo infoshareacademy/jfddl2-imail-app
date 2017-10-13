@@ -45,8 +45,8 @@ class ListingBase extends React.Component {
                                 <th>Imie i nazwisko</th>
                                 <th>Adres e-mail</th>
                                 <th>Miasto</th>
-                                <th>Płeć</th>
-                                <th>Zdjęcie</th>
+                                {/*<th>Płeć</th>*/}
+                                {/*<th>Zdjęcie</th>*/}
                                 <th>Szczegóły</th>
                             </tr>
                             </thead>
@@ -67,12 +67,12 @@ class ListingBase extends React.Component {
                                             <td>
                                                 {city}
                                             </td>
-                                            <td>
-                                                {gender}
-                                            </td>
-                                            <td>
-                                                <img src={avatar}/>
-                                            </td>
+                                            {/*<td>*/}
+                                                {/*{gender}*/}
+                                            {/*</td>*/}
+                                            {/*<td>*/}
+                                                {/*<img src={avatar}/>*/}
+                                            {/*</td>*/}
                                             <td>
                                                 <Link to={'/final-results/' + id}>Zobacz</Link>
                                             </td>
@@ -85,6 +85,7 @@ class ListingBase extends React.Component {
                         </Table> :
                         <p>Brak wyników</p>
                 }
+
                 {
                     users !== null ?
                         null :

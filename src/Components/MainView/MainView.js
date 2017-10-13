@@ -36,6 +36,9 @@ const MainMenu = () => (
         <LinkContainer to="/ListingBase">
           <NavItem>Wyświetl całą liste</NavItem>
         </LinkContainer>
+        <LinkContainer to="/Added">
+          <NavItem>Ulubione</NavItem>
+        </LinkContainer>
         <NavItem>
           <ShareButton/>
         </NavItem>

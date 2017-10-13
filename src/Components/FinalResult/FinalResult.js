@@ -5,7 +5,7 @@ class FinalResult extends React.Component {
     users: [],
     saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
     finalUser: null,
-    favourites: JSON.parse(localStorage.getItem('favourites')) || []
+      addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
   }
 
   componentDidMount() {
@@ -26,11 +26,10 @@ class FinalResult extends React.Component {
 
   handleAddFavUser = (event) => {
     event.preventDefault();
-console.log('aa', this.state.favourites);
     this.setState({
-       favourites: this.state.favourites.concat(this.state.finalUser)
+        addedUsers: this.state.addedUsers.concat(this.state.finalUser)
     }, () => {
-      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+      localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
     });
   }
 

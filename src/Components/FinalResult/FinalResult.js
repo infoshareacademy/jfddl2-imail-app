@@ -4,7 +4,8 @@ class FinalResult extends React.Component {
   state = {
     users: [],
     saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
-    finalUser: null
+    finalUser: null,
+    favourites: JSON.parse(localStorage.getItem('favourites')) || []
   }
 
   componentDidMount() {
@@ -23,9 +24,17 @@ class FinalResult extends React.Component {
     )
   }
 
-  render() {
-    console.log(this.state.finalUser)
+  handleAddFavUser = (event) => {
+    event.preventDefault();
+console.log('aa', this.state.favourites);
+    this.setState({
+       favourites: this.state.favourites.concat(this.state.finalUser)
+    }, () => {
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+    });
+  }
 
+  render() {
 
     return (
         <div>
@@ -38,6 +47,7 @@ class FinalResult extends React.Component {
                   <li>{this.state.finalUser.city}</li>
                   <li>{this.state.finalUser.gender}</li>
                 </ul>
+                <button onClick={this.handleAddFavUser}> Dodaj </button>
               </div>
               : 'Ładowanie'}
         </div>

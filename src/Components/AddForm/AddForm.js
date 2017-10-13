@@ -47,7 +47,7 @@ class AddForm extends React.Component {
 
     handleAddUser = (event) => {
         event.preventDefault();
-
+console.log(this.state.saveUsers);
         let newUser = {
             id: Date.now(),
             avatar: "https://llw.azureedge.net/2017-07-04T13.10.30.308Z/images/avatar-default.svg",

@@ -4,20 +4,20 @@ class Favourite extends React.Component {
 
   state = {
     favourites: JSON.parse(localStorage.getItem('favourites')) || [],
-    filteredRecipes: []
+    filteredUsers: []
   }
 
   componentDidMount() {
     fetch(
-        `${process.env.PUBLIC_URL} /data/database.json` // template string usage
+        `${process.env.PUBLIC_URL}/data/database.json` // template string usage
     ).then(
         response => response.json()
-    ).then((recipes) => {
-          let filteredRecipes = recipes.filter((recipe) => {
-            return this.state.favourites.includes(parseInt(recipe.uid))
+    ).then((users) => {
+          let filteredUsers = users.filter((user) => {
+            return this.state.favourites.includes(parseInt(user.uid))
           })
           this.setState({
-            filteredRecipes: filteredRecipes
+            filteredUsers: filteredUsers
           })
         }
     )
@@ -25,8 +25,8 @@ class Favourite extends React.Component {
 
   render() {
     return (
-        this.state.filteredRecipes.map((recipe, index) => {
-          return <li key={index}>{recipe.name}</li>
+        this.state.filteredUsers.map((user, index) => {
+          return <li key={index}>{user.fullname}</li>
         })
     )
   }

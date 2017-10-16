@@ -26,7 +26,7 @@ class SearchForm extends React.Component {
         users: [],
         fetching: false,
         error: null,
-        saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
+        addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
         searchInput: '',
         gender: false
     }
@@ -55,7 +55,7 @@ class SearchForm extends React.Component {
             response => response.json()
         ).then(
             users => this.setState({
-                users: users,
+                users: users.concat(this.state.addedUsers),
                 fetching: false
             })
         ).catch(
@@ -116,7 +116,7 @@ class SearchForm extends React.Component {
                                 <th>Miasto</th>
                                 <th>Płeć</th>
                                 {/*<th>Zdjęcie</th>*/}
-                                {/*<th>Szczegóły</th>*/}
+                                <th>Szczegóły</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -129,11 +129,6 @@ class SearchForm extends React.Component {
                                     ({id, fullname, city, gender, email, avatar}, index) => (
                                         <tr key={id}>
                                             <td>
-                                              {
-                                                  this.state.saveUsers.map(
-                                                      ({ id }) => id
-                                                  ).includes(id) ? 'is fav' : ''
-                                              }
                                               {id}
                                             </td>
                                             <td>
@@ -147,6 +142,9 @@ class SearchForm extends React.Component {
                                             </td>
                                             <td>
                                                 {gender}
+                                            </td>
+                                            <td>
+                                                <Link to={'/final-results/' + id}>Zobacz</Link>
                                             </td>
                                         </tr>
                                     )

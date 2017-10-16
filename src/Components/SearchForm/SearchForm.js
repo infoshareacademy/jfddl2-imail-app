@@ -55,7 +55,7 @@ class SearchForm extends React.Component {
             response => response.json()
         ).then(
             users => this.setState({
-                users: users.concat(this.state.saveUsers),
+                users: users,
                 fetching: false
             })
         ).catch(
@@ -66,6 +66,12 @@ class SearchForm extends React.Component {
 
     render() {
         const {users, error, fetching} = this.state
+
+        const filteredUsers = users.filter((user)=>{
+          return this.state.gender ? user.gender === this.state.gender : true
+        })
+
+        console.log(filteredUsers)
 
         return (
             <div>
@@ -115,9 +121,7 @@ class SearchForm extends React.Component {
                             </thead>
                             <tbody>
                             {
-                                users.filter((user)=>{
-                                    return this.state.gender ? user.gender === this.state.gender : true
-                                }).filter((user)=>{
+                                filteredUsers.filter((user)=>{
                                     return user.fullname.includes(this.state.searchInput)
                                     || user.email.includes(this.state.searchInput)
                                     || user.city.includes(this.state.searchInput)
@@ -125,7 +129,12 @@ class SearchForm extends React.Component {
                                     ({id, fullname, city, gender, email, avatar}, index) => (
                                         <tr key={id}>
                                             <td>
-                                                {id}
+                                              {
+                                                  this.state.saveUsers.map(
+                                                      ({ id }) => id
+                                                  ).includes(id) ? 'is fav' : ''
+                                              }
+                                              {id}
                                             </td>
                                             <td>
                                                 {fullname}

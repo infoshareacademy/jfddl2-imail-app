@@ -3,6 +3,6 @@ import { createStore} from "redux"
 const reducer = (state, action) => ({
     // .....
 })
-const stpre =createStore(reducer)
+const store =createStore(reducer)
 
 export default store

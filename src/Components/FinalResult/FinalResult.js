@@ -33,6 +33,17 @@ class FinalResult extends React.Component {
     });
   }
 
+  handleDeleteFavUser = (event) => {
+    event.preventDefault();
+    this.setState({
+      addedUsers: this.state.addedUsers.filter(
+          user => user.id !== this.state.finalUser.id
+      )
+    }, () => {
+      localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
+    });
+  }
+
   render() {
     const isFavouriteUser = () => {
       let array = this.state.addedUsers.filter((favUser)=>{
@@ -52,7 +63,7 @@ class FinalResult extends React.Component {
                   <li>{this.state.finalUser.city}</li>
                   <li>{this.state.finalUser.gender}</li>
                 </ul>
-            {isFavouriteUser() ? 'Juz jest' : <button onClick={this.handleAddFavUser}> Dodaj </button>}
+            {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń </button> : <button onClick={this.handleAddFavUser}> Dodaj </button>}
 
               </div>
               : 'Ładowanie'}

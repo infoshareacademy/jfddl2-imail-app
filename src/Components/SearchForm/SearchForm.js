@@ -85,7 +85,7 @@ class SearchForm extends React.Component {
                         <FormControl onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button>
-                                <Glyphicon glyph="search"/> Search
+                                <Glyphicon glyph="search"/> Wyszukaj
                             </Button>
                         </InputGroup.Button>
                     </InputGroup>

@@ -9,7 +9,7 @@ class ListingBase extends React.Component {
         users: null,
         fetching: false,
         error: null,
-        saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
+        addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
     }
 
     componentDidMount() {
@@ -22,7 +22,7 @@ class ListingBase extends React.Component {
         ).then(
             response => response.json()
         ).then(
-            users => this.setState({ users: users.concat(this.state.saveUsers), fetching: false })
+            users => this.setState({ users: users.concat(this.state.addedUsers), fetching: false })
         ).catch(
             error => this.setState({ error, fetching: false })
         )

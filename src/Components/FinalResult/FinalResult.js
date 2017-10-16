@@ -5,7 +5,8 @@ class FinalResult extends React.Component {
     users: [],
     // saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
     finalUser: [],
-    addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
+    addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
+    favourites: JSON.parse(localStorage.getItem('favourites')) || []
   }
 
   componentDidMount() {
@@ -27,26 +28,26 @@ class FinalResult extends React.Component {
   handleAddFavUser = (event) => {
     event.preventDefault();
     this.setState({
-        addedUsers: this.state.addedUsers.concat(this.state.finalUser)
+      favourites: this.state.favourites.concat(this.state.finalUser)
     }, () => {
-      localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
     });
   }
 
   handleDeleteFavUser = (event) => {
     event.preventDefault();
     this.setState({
-      addedUsers: this.state.addedUsers.filter(
+      favourites: this.state.favourites.filter(
           user => user.id !== this.state.finalUser.id
       )
     }, () => {
-      localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
     });
   }
 
   render() {
     const isFavouriteUser = () => {
-      let array = this.state.addedUsers.filter((favUser)=>{
+      let array = this.state.favourites.filter((favUser)=>{
         return favUser.id === this.state.finalUser.id
       })
       return array.length > 0

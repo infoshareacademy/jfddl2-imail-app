@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 class Added extends React.Component {
 
     state = {
-        addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
+      favourites: JSON.parse(localStorage.getItem('favourites')) || []
     }
 
     componentDidMount() {
@@ -16,12 +16,12 @@ class Added extends React.Component {
 
         render()
         {
-            const addedUsers = this.state.addedUsers
+            const favourites = this.state.favourites
             return (
                 <div>
                     <h1>Ulubione</h1>
                     {
-                        addedUsers !== null ?
+                      favourites !== null ?
                             <Table striped bordered condensed hover style={{
                                 marginTop: 20
                             }}>
@@ -37,7 +37,7 @@ class Added extends React.Component {
                                 </thead>
                                 <tbody>
                                 {
-                                    addedUsers && addedUsers.map(
+                                  favourites && favourites.map(
                                         ({ id, fullname, city, gender,email,avatar }, index, allGroups) => (
                                             <tr key={id}>
                                                 <td>

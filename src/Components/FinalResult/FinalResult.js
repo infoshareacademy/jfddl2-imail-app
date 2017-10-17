@@ -64,7 +64,7 @@ class FinalResult extends React.Component {
                   <li>{this.state.finalUser.city}</li>
                   <li>{this.state.finalUser.gender}</li>
                 </ul>
-            {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń </button> : <button onClick={this.handleAddFavUser}> Dodaj </button>}
+            {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń z Ulubionych </button> : <button onClick={this.handleAddFavUser}> Dodaj do ulubionych</button>}
 
               </div>
               : 'Ładowanie'}

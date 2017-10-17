@@ -13,6 +13,16 @@ class Added extends React.Component {
             fetching: true
         })
     }
+  handleDeleteFavUser = (event) => {
+    event.preventDefault();
+    this.setState({
+      favourites: this.state.favourites.filter(
+          user => user.id !== parseInt(event.target.dataset.userId)
+      )
+    }, () => {
+      localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+    });
+  }
 
         render()
         {
@@ -58,6 +68,11 @@ class Added extends React.Component {
                                                 <td>
                                                     <img src={avatar}/>
                                                 </td>
+                                                <td>
+                                                    <button
+                                                        data-user-id={id}
+                                                        onClick={this.handleDeleteFavUser}
+                                                    > Usuń z Ulubionych </button></td>
                                             </tr>
                                         )
                                     )

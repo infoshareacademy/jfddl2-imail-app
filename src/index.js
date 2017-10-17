@@ -10,7 +10,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
-    <App title="instantmailApp"/>,
+    <App title="instantMail - Wysyłkę zrobimy za Ciebie"/>,
     document.getElementById('root')
 )
 

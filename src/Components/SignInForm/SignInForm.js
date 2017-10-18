@@ -22,7 +22,7 @@ class SignInForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>Sign In</h1>
+        <h1>Zaloguj</h1>
         <input
           type="text"
           name="email"
@@ -37,7 +37,7 @@ class SignInForm extends React.Component {
           value={this.state.password}
         />
 
-        <button>Sign in</button>
+        <button>Zaloguj</button>
       </form>
     )
   }

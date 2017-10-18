@@ -29,8 +29,9 @@ class Favourite extends React.Component {
           return <li key={index}>{user.fullname}</li>
         })
     )
+
   }
 
+  }
 
-}
 export default Favourite

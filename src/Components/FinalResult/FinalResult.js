@@ -18,7 +18,7 @@ class FinalResult extends React.Component {
         users => {
           users = users.concat(this.state.addedUsers)
           users = users.filter((user) => {
-            return user.id == this.props.match.params.id
+            return user.id === this.props.match.params.id
           })
           this.setState({users: users, finalUser: users[0]})
         }
@@ -64,7 +64,7 @@ class FinalResult extends React.Component {
                   <li>{this.state.finalUser.city}</li>
                   <li>{this.state.finalUser.gender}</li>
                 </ul>
-            {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń </button> : <button onClick={this.handleAddFavUser}> Dodaj </button>}
+            {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń z Ulubionych </button> : <button onClick={this.handleAddFavUser}> Dodaj do ulubionych</button>}
 
               </div>
               : 'Ładowanie'}

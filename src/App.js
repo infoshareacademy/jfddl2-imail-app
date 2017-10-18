@@ -13,7 +13,7 @@ import Added from './Components/Added/Added'
 import AddForm from './Components/AddForm/AddForm'
 import FinalResult from './Components/FinalResult'
 import Login from "./Components/Login/Login"
-import ListingBase from "./Components/ListingBase/ListingBase"
+import Groups from "./Components/Groups/Groups"
 import SearchForm from "./Components/SearchForm/SearchForm"
 import Favourite from "./Components/Favourite/Favourite"
 import ShareButton from "./Components/ShareButton/ShareButton"
@@ -30,7 +30,7 @@ class App extends React.Component {
                     <Route path ="/AddForm" component ={AddForm}/>
                     <Route path ="/Login" component ={Login}/>
                     <Route path ="/final-results/:id" component ={FinalResult}/>
-                    <Route path ="/ListingBase" component ={ListingBase}/>
+                    <Route path ="/Groups" component ={Groups}/>
                     <Route path ="/SearchForm" component ={SearchForm}/>
                     <Route path ="/Favourite" component ={Favourite}/>
                     <Route path ="/ShareButton" component ={ShareButton}/>

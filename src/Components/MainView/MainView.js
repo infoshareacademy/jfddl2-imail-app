@@ -35,9 +35,9 @@ const MainMenu = props => (
         <LinkContainer to="/SearchForm">
           <NavItem>Wyszukaj</NavItem>
         </LinkContainer>
-        {/*<LinkContainer to="/ListingBase">*/}
-          {/*<NavItem>Wyświetl całą liste</NavItem>*/}
-        {/*</LinkContainer>*/}
+        <LinkContainer to="/Groups">
+          <NavItem>Grupy</NavItem>
+        </LinkContainer>
         <LinkContainer to="/Added">
           <NavItem>Ulubione</NavItem>
         </LinkContainer>

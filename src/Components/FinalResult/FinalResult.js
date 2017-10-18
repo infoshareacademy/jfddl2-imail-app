@@ -18,7 +18,7 @@ class FinalResult extends React.Component {
         users => {
           users = users.concat(this.state.addedUsers)
           users = users.filter((user) => {
-            return user.id === this.props.match.params.id
+            return user.id === parseInt(this.props.match.params.id)
           })
           this.setState({users: users, finalUser: users[0]})
         }

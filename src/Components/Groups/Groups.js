@@ -27,7 +27,7 @@ class Groups extends React.Component {
         console.log(this.state.addgroup);
         let newGroup = {
 
-            group: this.state.group,
+            addgroup: this.state.addgroup,
         };
 
     }

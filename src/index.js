@@ -15,11 +15,14 @@ import Auth from './Components/Auth'
 import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
+
     <Provider store={store}>
       <Auth>
-        <App title="My app"/>
+       <App title="instantMail - Wysyłkę zrobimy za Ciebie"/>
       </Auth>
-    </Provider>,
+    </Provider>
+    
+
     document.getElementById('root')
 )
 registerServiceWorker()

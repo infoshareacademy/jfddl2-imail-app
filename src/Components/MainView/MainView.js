@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
   Navbar,
   Nav,
@@ -12,11 +13,12 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 import ListingBase from "../ListingBase/ListingBase";
+import { signOut } from '../../state/auth'
 
 // import logo from './logo.svg'
 import ShareButton from "../ShareButton/ShareButton"
 
-const MainMenu = () => (
+const MainMenu = props => (
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
@@ -39,12 +41,19 @@ const MainMenu = () => (
         <LinkContainer to="/Added">
           <NavItem>Ulubione</NavItem>
         </LinkContainer>
+        <NavItem onClick={props.signOutHelper}>Sign out</NavItem>
         <NavItem>
           <ShareButton/>
         </NavItem>
       </Nav>
     </Navbar>
 )
+const mapDispatchToProps = dispatch => ({
+  signOutHelper: () => dispatch(signOut())
+})
 
 
-export default MainMenu
+export default connect(
+    null,
+    mapDispatchToProps
+)(MainMenu)

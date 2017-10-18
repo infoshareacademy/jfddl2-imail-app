@@ -20,9 +20,7 @@ ReactDOM.render(
       <Auth>
        <App title="instantMail - Wysyłkę zrobimy za Ciebie"/>
       </Auth>
-    </Provider>
-    
-
+    </Provider>,
     document.getElementById('root')
 )
 registerServiceWorker()

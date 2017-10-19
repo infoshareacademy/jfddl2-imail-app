@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { signIn } from '../../state/auth'
+import { signIn, signInWithGoogle } from '../../state/auth'
 
 class SignInForm extends React.Component {
 
@@ -38,13 +38,18 @@ class SignInForm extends React.Component {
         />
 
         <button>Zaloguj</button>
+        <button onClick={event => {
+          event.preventDefault()
+          this.props.signInWithGoogle()
+        }}>Google</button>
       </form>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  signInHelper: (email, password) => dispatch(signIn(email, password))
+  signInHelper: (email, password) => dispatch(signIn(email, password)),
+  signInWithGoogle: () => dispatch(signInWithGoogle())
 })
 
 export default connect(

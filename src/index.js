@@ -15,7 +15,6 @@ import Auth from './Components/Auth'
 import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
-
     <Provider store={store}>
       <Auth>
        <App title="instantMail - Wysyłkę zrobimy za Ciebie"/>

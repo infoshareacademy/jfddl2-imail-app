@@ -57,12 +57,12 @@ class FinalResult extends React.Component {
         <div>
           {this.state.finalUser ? <div>
                 <ul>
-                  <li><img src={this.state.finalUser.avatar}/></li><br/>
-                  <li>{this.state.finalUser.id}</li>
-                  <li>{this.state.finalUser.fullname}</li>
-                  <li>{this.state.finalUser.email}</li>
-                  <li>{this.state.finalUser.city}</li>
-                  <li>{this.state.finalUser.gender}</li>
+                  <img src={this.state.finalUser.avatar}/><br/>
+                  <strong>ID: </strong>{this.state.finalUser.id}<br/>
+                  <strong>Full Name: </strong>{this.state.finalUser.fullname}<br/>
+                  <strong>Email: </strong>{this.state.finalUser.email}<br/>
+                  <strong>City: </strong>{this.state.finalUser.city}<br/>
+                  <strong>Gender: </strong>{this.state.finalUser.gender}<br/>
                 </ul>
             {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń z Ulubionych </button> : <button onClick={this.handleAddFavUser}> Dodaj do ulubionych</button>}
 

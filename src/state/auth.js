@@ -1,4 +1,4 @@
-import { auth } from '../firebase'
+import { auth, googleProvider } from '../firebase'
 
 const SET_USER = 'auth/SET_USER'
 
@@ -15,6 +15,10 @@ export const init = () => dispatch => {
 
 export const signIn = (email, password) => dispatch => {
   auth().signInWithEmailAndPassword(email, password)
+}
+
+export const signInWithGoogle = () => dispatch => {
+  auth().signInWithPopup(googleProvider)
 }
 
 export const signUp = (email, password) => dispatch => {

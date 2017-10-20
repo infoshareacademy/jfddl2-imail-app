@@ -55,22 +55,6 @@ class SearchForm extends React.Component {
         })
     }
 
-    componentDidMount() {
-        this.setState({
-            fetching: true
-        })
-
-        database().ref('contacts').on('value', snapshot => {
-            let users = snapshot.val()
-            this.setState({
-            users: users.concat(this.state.addedUsers),
-            fetching: false
-        })
-        }
-        )
-
-    }
-
     mapStateToProps = props => (
         <div>
             <ul>
@@ -90,21 +74,11 @@ class SearchForm extends React.Component {
 
 
     render() {
-        const filteredUsers = this.state.users.filter((user) => {
-            return this.state.gender ? user.gender === this.state.gender : true
-        })
-
-        console.log(filteredUsers)
-
         return (
             <div>
                 <h1>Wyszukaj</h1>
                 <form>
                     <InputGroup>
-                        {/*<GroupSearchForm*/}
-                        {/*searchPhrase={this.state.currentSearchPhrase}*/}
-                        {/*handleChange={this.handleSearchPhraseChange }*/}
-                        {/*/>*/}
                         <FormControl onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button>
@@ -128,7 +102,7 @@ class SearchForm extends React.Component {
 
 
                 {
-                    this.state.users !== null ?
+                    this.props.contacts !== null ?
                         <Table striped bordered condensed hover style={{
                             marginTop: 20
                         }}>
@@ -145,7 +119,9 @@ class SearchForm extends React.Component {
                             </thead>
                             <tbody>
                             {
-                                filteredUsers.filter((user) => {
+                                this.props.contacts.filter((user) => {
+                                    return this.state.gender ? user.gender === this.state.gender : true
+                                }).filter((user) => {
                                     return user.fullname.includes(this.state.searchInput)
                                         || user.email.includes(this.state.searchInput)
                                         || user.city.includes(this.state.searchInput)
@@ -177,26 +153,9 @@ class SearchForm extends React.Component {
                             </tbody>
 
                         </Table> :
-                        <p>Brak wyników</p>
+                        <p>Ładowanie</p>
                 }
 
-                {
-                    this.state.users !== null ?
-                        null :
-                        <p>Brak wyników</p>
-                }
-
-                {
-                    this.state.fetching === false ?
-                        null :
-                        <p>Pobieranie bazy...</p>
-                }
-
-                {
-                    this.state.error === null ?
-                        null :
-                        <p>{this.state.error.message}</p>
-                }
             </div>
         )
     }
@@ -204,12 +163,10 @@ class SearchForm extends React.Component {
 
 }
 
-// const mapStateToProps = state => ({
-//     users: state.users
-// })
-//
-// export default connect(
-//     mapStateToProps
-// )(SearchForm)
+    const mapStateToProps = state => ({
+    contacts: state.contacts.contactsList
+})
 
-export default SearchForm
+export default connect(
+    mapStateToProps
+)(SearchForm)

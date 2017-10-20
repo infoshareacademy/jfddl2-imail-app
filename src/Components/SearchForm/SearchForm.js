@@ -101,10 +101,6 @@ class SearchForm extends React.Component {
                 <h1>Wyszukaj</h1>
                 <form>
                     <InputGroup>
-                        {/*<GroupSearchForm*/}
-                        {/*searchPhrase={this.state.currentSearchPhrase}*/}
-                        {/*handleChange={this.handleSearchPhraseChange }*/}
-                        {/*/>*/}
                         <FormControl onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button>

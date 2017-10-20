@@ -7,10 +7,12 @@ import {
 import thunk from 'redux-thunk'
 
 import auth, { init as initAuth } from './state/auth'
+import contacts, { init as initContactsSync } from './state/contacts'
 
 
 const reducer = combineReducers({
-  auth
+    auth,
+    contacts
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -23,6 +25,7 @@ const store = createStore(
 )
 
 store.dispatch(initAuth())
+store.dispatch(initContactsSync())
 
 
 export default store

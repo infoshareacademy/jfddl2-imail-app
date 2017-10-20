@@ -1,18 +1,7 @@
 import React from 'react'
-import {
-    ToggleButtonGroup,
-    ToggleButton,
-    Table,
-    InputGroup,
-    FormControl,
-    Glyphicon,
-    ButtonToolbar,
-    Button
-} from 'react-bootstrap'
+import {ToggleButtonGroup, ToggleButton, Table, InputGroup, FormControl,Glyphicon, ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 
-import { database } from '../../firebase'
 
 const filters = {
     gender_male: gender => gender.male === 'Mężczyzna',
@@ -42,13 +31,13 @@ class SearchForm extends React.Component {
         gender: false
     }
 
-    searchHandler = (event) => {
+    searchHandler = (event)=>{
         this.setState({
             searchInput: event.target.value
         })
     }
 
-    genderHandler = (value) => {
+    genderHandler = (value)=>{
         console.log(value)
         this.setState({
             gender: value
@@ -60,38 +49,26 @@ class SearchForm extends React.Component {
             fetching: true
         })
 
-        database().ref('contacts').on('value', snapshot => {
-            let users = snapshot.val()
-            this.setState({
-            users: users.concat(this.state.addedUsers),
-            fetching: false
-        })
-        }
+        fetch(
+            `${process.env.PUBLIC_URL}/database.json` // template string usage
+        ).then(
+            response => response.json()
+        ).then(
+            users => this.setState({
+                users: users.concat(this.state.addedUsers),
+                fetching: false
+            })
+        ).catch(
+            error => this.setState({error, fetching: false})
         )
-
     }
-
-    mapStateToProps = props => (
-        <div>
-            <ul>
-                {
-                    props.messages && Object.entries(props.messages).reverse().map(
-                        ([key, value]) => (
-                            <li key={key}>
-                                <p>{value.content}</p>
-                                <p><strong>{value.author}</strong></p>
-                            </li>
-                        )
-                    )
-                }
-            </ul>
-        </div>
-    )
 
 
     render() {
-        const filteredUsers = this.state.users.filter((user) => {
-            return this.state.gender ? user.gender === this.state.gender : true
+        const {users, error, fetching} = this.props
+
+        const filteredUsers = users.filter((user)=>{
+          return this.state.gender ? user.gender === this.state.gender : true
         })
 
         console.log(filteredUsers)
@@ -102,8 +79,8 @@ class SearchForm extends React.Component {
                 <form>
                     <InputGroup>
                         {/*<GroupSearchForm*/}
-                        {/*searchPhrase={this.state.currentSearchPhrase}*/}
-                        {/*handleChange={this.handleSearchPhraseChange }*/}
+                            {/*searchPhrase={this.state.currentSearchPhrase}*/}
+                            {/*handleChange={this.handleSearchPhraseChange }*/}
                         {/*/>*/}
                         <FormControl onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
@@ -114,8 +91,7 @@ class SearchForm extends React.Component {
                     </InputGroup>
 
                     <ButtonToolbar>
-                        <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options"
-                                           defaultValue={false}>
+                        <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options" defaultValue={false}>
                             <ToggleButton value={false}>
                                 Wszyscy
                             </ToggleButton>
@@ -128,7 +104,7 @@ class SearchForm extends React.Component {
 
 
                 {
-                    this.state.users !== null ?
+                    users !== null ?
                         <Table striped bordered condensed hover style={{
                             marginTop: 20
                         }}>
@@ -145,15 +121,15 @@ class SearchForm extends React.Component {
                             </thead>
                             <tbody>
                             {
-                                filteredUsers.filter((user) => {
+                                filteredUsers.filter((user)=>{
                                     return user.fullname.includes(this.state.searchInput)
-                                        || user.email.includes(this.state.searchInput)
-                                        || user.city.includes(this.state.searchInput)
+                                    || user.email.includes(this.state.searchInput)
+                                    || user.city.includes(this.state.searchInput)
                                 }).map(
                                     ({id, fullname, city, gender, email, avatar}, index) => (
                                         <tr key={id}>
                                             <td>
-                                                {id}
+                                              {id}
                                             </td>
                                             <td>
                                                 {fullname}
@@ -181,21 +157,21 @@ class SearchForm extends React.Component {
                 }
 
                 {
-                    this.state.users !== null ?
+                    users !== null ?
                         null :
                         <p>Brak wyników</p>
                 }
 
                 {
-                    this.state.fetching === false ?
+                    fetching === false ?
                         null :
                         <p>Pobieranie bazy...</p>
                 }
 
                 {
-                    this.state.error === null ?
+                    error === null ?
                         null :
-                        <p>{this.state.error.message}</p>
+                        <p>{error.message}</p>
                 }
             </div>
         )
@@ -203,13 +179,5 @@ class SearchForm extends React.Component {
 
 
 }
-
-// const mapStateToProps = state => ({
-//     users: state.users
-// })
-//
-// export default connect(
-//     mapStateToProps
-// )(SearchForm)
 
 export default SearchForm

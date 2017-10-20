@@ -163,7 +163,7 @@ class SearchForm extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
+    const mapStateToProps = state => ({
     contacts: state.contacts.contactsList
 })
 

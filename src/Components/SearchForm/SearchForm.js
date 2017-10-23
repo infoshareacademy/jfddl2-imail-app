@@ -1,6 +1,8 @@
 import React from 'react'
 import {
     ToggleButtonGroup,
+    DropdownButton,
+    MenuItem,
     ToggleButton,
     Table,
     InputGroup,
@@ -12,7 +14,7 @@ import {
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import { database } from '../../firebase'
+import {database} from '../../firebase'
 
 const filters = {
     gender_male: gender => gender.male === 'Mężczyzna',
@@ -115,8 +117,9 @@ class SearchForm extends React.Component {
                                 <th>Miasto</th>
                                 <th>Płeć</th>
                                 {/*<th>Zdjęcie</th>*/}
-                                <th>Szczegóły</th>
                                 <th>Grupa</th>
+                                <th>Dodaj grupę</th>
+                                <th>Szczegóły</th>
 
                             </tr>
                             </thead>
@@ -129,7 +132,7 @@ class SearchForm extends React.Component {
                                         || user.email.includes(this.state.searchInput)
                                         || user.city.includes(this.state.searchInput)
                                 }).map(
-                                    ({id, fullname, city, gender, email, avatar, addGroup}, index) => (
+                                    ({id, fullname, city, gender, email, avatar, group}, index) => (
                                         <tr key={id}>
                                             <td>
                                                 {id}
@@ -147,10 +150,16 @@ class SearchForm extends React.Component {
                                                 {gender}
                                             </td>
                                             <td>
-                                                <Link to={'/final-results/' + id}>Zobacz</Link>
+                                                {group}
                                             </td>
                                             <td>
-                                                {addGroup}
+                                                <DropdownButton title="Dodaj do grupy" id="bg-vertical-dropdown-1">
+                                                    <MenuItem eventKey="1">Nazwa grupy 1</MenuItem>
+                                                    <MenuItem eventKey="2">Nazwa grupy 2</MenuItem>
+                                                </DropdownButton>
+                                            </td>
+                                            <td>
+                                                <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
                                         </tr>
                                     )
@@ -169,7 +178,7 @@ class SearchForm extends React.Component {
 
 }
 
-    const mapStateToProps = state => ({
+const mapStateToProps = state => ({
     contacts: state.contacts.contactsList
 })
 

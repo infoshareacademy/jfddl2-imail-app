@@ -1,6 +1,8 @@
 import React from 'react'
 
 import {
+  DropdownButton,
+  MenuItem,
   InputGroup,
   FormControl,
   Glyphicon,
@@ -17,6 +19,7 @@ class AddForm extends React.Component {
       email: '',
       gender: '',
       city: '',
+      group: '',
       addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
     }
   }
@@ -45,6 +48,12 @@ class AddForm extends React.Component {
     });
   }
 
+    handleGroupInputChange = (event) => {
+        this.setState({
+            group: event.target.value
+        });
+    }
+
   handleAddUser = (event) => {
     event.preventDefault();
     console.log(this.state.addedUsers);
@@ -54,7 +63,8 @@ class AddForm extends React.Component {
       fullname: this.state.name,
       email: this.state.email,
       gender: this.state.gender,
-      city: this.state.city
+      city: this.state.city,
+      group: this.state.group
     };
 
     this.setState({
@@ -62,7 +72,8 @@ class AddForm extends React.Component {
       name: '',
       email: '',
       gender: '',
-      city: ''
+      city: '',
+      group: ''
     }, () => {
       localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
     });
@@ -102,11 +113,15 @@ class AddForm extends React.Component {
               name="gender"
               value="kobieta"
               onChange={this.handleGenderInputChange}
-          />
+          /><br/>
+            <DropdownButton title="Wybierz grupę" id="bg-vertical-dropdown-1">
+              <MenuItem eventKey="1">Dropdown link</MenuItem>
+              <MenuItem eventKey="2">Dropdown link</MenuItem>
+            </DropdownButton>
             <br/>
-            <button onClick={this.handleAddUser}>
+            <Button onClick={this.handleAddUser}>
               Zapisz
-            </button>
+            </Button>
           </form>
 
           {/*<ul>*/}

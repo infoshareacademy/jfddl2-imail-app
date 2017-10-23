@@ -2,7 +2,12 @@ import React from 'react'
 
 import {
     Button,
-    Table
+    Table,
+    FormControl,
+    InputGroup,
+    ControlLabel,
+    Glyphicon
+
 } from 'react-bootstrap'
 
 import {connect} from 'react-redux'
@@ -12,7 +17,8 @@ import { addGroup } from '../../state/groups'
 class Groups extends React.Component {
 
     state = {
-        addgroup: ''
+        addgroup: '',
+        newGroupName: ''
     }
 
     handleGroupInputChange = (event) => {
@@ -41,28 +47,30 @@ class Groups extends React.Component {
 
         return (
             <div>
-                <h1>Grupy</h1>
-                <form
-                    onSubmit={this.handleSubmit}
-                >
-                    Nazwa grupy <input
-                    type="text"
-                    value={this.state.newGroupName}
-                    onChange={this.handleGroupInputChange}
-                />
-                    <Button onClick={this.handleAddGroup}>
-                      Utwórz
-                    </Button>
+                {/*<h1>Grupy</h1>*/}
+
+                <form onSubmit={this.handleSubmit}>
+                    <ControlLabel>Wpisz nową nazwę grupy</ControlLabel>
+                    <InputGroup>
+                        <FormControl
+                            type="text"
+                            onChange={this.handleGroupInputChange}
+                            value={this.state.newGroupName}/>
+                        <InputGroup.Button>
+                            <Button onClick={this.handleAddGroup}>
+                                <Glyphicon glyph="plus-sign"/> Dodaj
+                            </Button>
+                        </InputGroup.Button>
+                    </InputGroup>
                 </form>
 
-
                 <Table striped bordered condensed hover style={{
-                    marginTop: 20
+                    marginTop: 50
                 }}>
                     <thead>
                     <tr>
                         <th>Nazwa grupy</th>
-                        <th style={{width:40}}>Akcja</th>
+                        <th style={{width:20}}>Akcja</th>
                     </tr>
                     </thead>
 

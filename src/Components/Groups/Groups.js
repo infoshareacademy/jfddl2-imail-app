@@ -4,32 +4,28 @@ import {
     Button
 } from 'react-bootstrap'
 
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+import { addGroup } from '../../state/groups'
+
+import { database } from '../../firebase'
 
 class Groups extends React.Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            addgroup: ''
-            // addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
-        }
+    state = {
+        addgroup: ''
     }
 
     handleGroupInputChange = (event) => {
         this.setState({
-            addgroup: event.target.value
+            newGroupName: event.target.value
         });
     }
 
     handleAddGroup = (event) => {
         event.preventDefault();
-        console.log(this.state.addgroup);
-        let newGroup = {
-
-            addgroup: this.state.addgroup,
-        };
-
+        this.props.addGroup(this.state.newGroupName)
     }
 
     render() {
@@ -42,7 +38,7 @@ class Groups extends React.Component {
                 >
                     Nazwa grupy <input
                     type="text"
-                    value={this.state.addgroup}
+                    value={this.state.newGroupName}
                     onChange={this.handleGroupInputChange}
                 />
                     <Button onClick={this.handleAddGroup}>
@@ -50,10 +46,31 @@ class Groups extends React.Component {
                     </Button>
                 </form>
 
+
+                <ul>
+                    {Object.values(this.props.groups).map((group, index)=>{
+                        return <li key = {index}>{group}</li>
+                    })}
+                </ul>
+
             </div>
         )
     }
 
 }
 
-export default Groups
+
+const mapDispatchToProps = dispatch => ({
+    addGroup: name => dispatch(addGroup(name))
+})
+
+const mapStateToProps = state => ({
+    groups: state.groups.groupsList
+})
+
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Groups)

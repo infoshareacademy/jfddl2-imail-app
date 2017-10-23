@@ -29,7 +29,7 @@ class Added extends React.Component {
             const favourites = this.state.favourites
             return (
                 <div>
-                    <h1>Ulubione</h1>
+                    <h2>Ulubione</h2>
                     {
                       favourites !== null ?
                             <Table striped bordered condensed hover style={{

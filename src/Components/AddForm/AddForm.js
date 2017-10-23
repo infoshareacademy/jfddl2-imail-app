@@ -72,7 +72,7 @@ class AddForm extends React.Component {
     render() {
         return (
             <div>
-                <h1>Dodaj do listy</h1>
+                <h2>Dodaj do listy</h2>
                 <br/>
 
                 <form style={{width: 400}} onSubmit={this.handleSubmit}>

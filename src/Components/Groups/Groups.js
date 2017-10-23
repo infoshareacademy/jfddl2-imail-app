@@ -12,7 +12,7 @@ import {
 
 import {connect} from 'react-redux'
 
-import { addGroup } from '../../state/groups'
+import {addGroup} from '../../state/groups'
 
 class Groups extends React.Component {
 
@@ -47,13 +47,13 @@ class Groups extends React.Component {
 
         return (
             <div>
-                {/*<h1>Grupy</h1>*/}
+                <h2>Grupy</h2>
                 <br/>
-                <form onSubmit={this.handleSubmit}>
+                <form style={{width: 400}} onSubmit={this.handleSubmit}>
                     <InputGroup>
                         <FormControl
                             type="text"
-                            placeholder="Wpisz nową nazwę grupy"
+                            placeholder="Wpisz nową nazwę grupy..."
                             onChange={this.handleGroupInputChange}
                             value={this.state.newGroupName}/>
                         <InputGroup.Button>
@@ -63,23 +63,23 @@ class Groups extends React.Component {
                         </InputGroup.Button>
                     </InputGroup>
                 </form>
-
                 <Table striped bordered condensed hover style={{
                     marginTop: 50
                 }}>
                     <thead>
                     <tr>
                         <th>Nazwa grupy</th>
-                        <th style={{width:20}}>Akcja</th>
+                        <th style={{width: 20}}>Akcja</th>
                     </tr>
                     </thead>
 
 
                     <tbody>
-                    {Object.values(this.props.groups).map((group, index)=>{
-                        return <tr key = {index}>
+                    {Object.values(this.props.groups).map((group, index) => {
+                        return <tr key={index}>
                             <td>{group}</td>
-                            <td><Button onClick={this.handleDeleteGroup}>Usuń grupę</Button></td>
+                            <td><Button onClick={this.handleDeleteGroup}><Glyphicon glyph="minus-sign"/> Usuń
+                                grupę</Button></td>
                         </tr>
                     })}
                     </tbody>
@@ -99,7 +99,6 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
     groups: state.groups.groupsList
 })
-
 
 
 export default connect(

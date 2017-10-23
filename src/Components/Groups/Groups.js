@@ -61,9 +61,8 @@ class Groups extends React.Component {
                 }}>
                     <thead>
                     <tr>
-                        {/*<th>ID</th>*/}
                         <th>Nazwa grupy</th>
-                        <th>Akcja</th>
+                        <th style={{width:40}}>Akcja</th>
                     </tr>
                     </thead>
 

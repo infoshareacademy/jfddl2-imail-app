@@ -39,7 +39,8 @@ class SearchForm extends React.Component {
         error: null,
         addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
         searchInput: '',
-        gender: false
+        gender: false,
+        addGroup: ''
     }
 
     searchHandler = (event) => {
@@ -115,6 +116,8 @@ class SearchForm extends React.Component {
                                 <th>Płeć</th>
                                 {/*<th>Zdjęcie</th>*/}
                                 <th>Szczegóły</th>
+                                <th>Grupa</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -126,7 +129,7 @@ class SearchForm extends React.Component {
                                         || user.email.includes(this.state.searchInput)
                                         || user.city.includes(this.state.searchInput)
                                 }).map(
-                                    ({id, fullname, city, gender, email, avatar}, index) => (
+                                    ({id, fullname, city, gender, email, avatar, addGroup}, index) => (
                                         <tr key={id}>
                                             <td>
                                                 {id}
@@ -145,6 +148,9 @@ class SearchForm extends React.Component {
                                             </td>
                                             <td>
                                                 <Link to={'/final-results/' + id}>Zobacz</Link>
+                                            </td>
+                                            <td>
+                                                {addGroup}
                                             </td>
                                         </tr>
                                     )

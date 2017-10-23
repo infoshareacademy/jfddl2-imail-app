@@ -1,15 +1,13 @@
 import React from 'react'
 
 import {
-    Button
+    Button,
+    Table
 } from 'react-bootstrap'
 
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import { addGroup } from '../../state/groups'
-
-import { database } from '../../firebase'
 
 class Groups extends React.Component {
 
@@ -25,7 +23,18 @@ class Groups extends React.Component {
 
     handleAddGroup = (event) => {
         event.preventDefault();
-        this.props.addGroup(this.state.newGroupName)
+        this.props.addGroup(this.state.newGroupName);
+        this.setState({
+            newGroupName: ''
+        });
+
+    }
+
+
+    handleDeleteGroup = (event) => {
+        event.preventDefault();
+        this.props.deleteGroup(this.state.deleteGroup)
+
     }
 
     render() {
@@ -47,11 +56,27 @@ class Groups extends React.Component {
                 </form>
 
 
-                <ul>
+                <Table striped bordered condensed hover style={{
+                    marginTop: 20
+                }}>
+                    <thead>
+                    <tr>
+                        {/*<th>ID</th>*/}
+                        <th>Nazwa grupy</th>
+                        <th>Akcja</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
                     {Object.values(this.props.groups).map((group, index)=>{
-                        return <li key = {index}>{group}</li>
+                        return <tr key = {index}>
+                            <td>{group}</td>
+                            <td><Button onClick={this.handleDeleteGroup}>Usuń grupę</Button></td>
+                        </tr>
                     })}
-                </ul>
+                    </tbody>
+                </Table>
 
             </div>
         )

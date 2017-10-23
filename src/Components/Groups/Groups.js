@@ -48,12 +48,12 @@ class Groups extends React.Component {
         return (
             <div>
                 {/*<h1>Grupy</h1>*/}
-
+                <br/>
                 <form onSubmit={this.handleSubmit}>
-                    <ControlLabel>Wpisz nową nazwę grupy</ControlLabel>
                     <InputGroup>
                         <FormControl
                             type="text"
+                            placeholder="Wpisz nową nazwę grupy"
                             onChange={this.handleGroupInputChange}
                             value={this.state.newGroupName}/>
                         <InputGroup.Button>

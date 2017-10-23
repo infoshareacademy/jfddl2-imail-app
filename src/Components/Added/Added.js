@@ -86,4 +86,5 @@ class Added extends React.Component {
         }
 }
 
+
 export default Added

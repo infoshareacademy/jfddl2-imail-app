@@ -17,6 +17,7 @@ import Groups from "./Components/Groups/Groups"
 import SearchForm from "./Components/SearchForm/SearchForm"
 import Favourite from "./Components/Favourite/Favourite"
 import ShareButton from "./Components/ShareButton/ShareButton"
+import EditProfile from "./Components/EditProfile"
 
 
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
                     <Route path ="/SearchForm" component ={SearchForm}/>
                     <Route path ="/Favourite" component ={Favourite}/>
                     <Route path ="/ShareButton" component ={ShareButton}/>
+                    <Route path ="/EditProfile" component ={EditProfile}/>
                 </Grid>
             </Router>
         )

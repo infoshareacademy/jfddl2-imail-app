@@ -45,6 +45,9 @@ const MainMenu = props => (
         <NavItem>
           <ShareButton/>
         </NavItem>
+        <LinkContainer to="/EditProfile">
+          <NavItem>Mój Profil</NavItem>
+        </LinkContainer>
       </Nav>
     </Navbar>
 )

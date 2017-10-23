@@ -1,7 +1,8 @@
 import React from 'react'
 
 import {
-    Button
+    Button,
+    Table
 } from 'react-bootstrap'
 
 import {Link} from 'react-router-dom'
@@ -47,11 +48,25 @@ class Groups extends React.Component {
                 </form>
 
 
-                <ul>
+                <Table striped bordered condensed hover style={{
+                    marginTop: 20
+                }}>
+                    <thead>
+                    <tr>
+                        {/*<th>ID</th>*/}
+                        <th>Nazwa grupy</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
                     {Object.values(this.props.groups).map((group, index)=>{
-                        return <li key = {index}>{group}</li>
+                        return <tr key = {index}>
+                            <td>{group}</td>
+                        </tr>
                     })}
-                </ul>
+                    </tbody>
+                </Table>
 
             </div>
         )

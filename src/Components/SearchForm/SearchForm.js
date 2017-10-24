@@ -1,4 +1,4 @@
-import React from 'react'
+    import React from 'react'
 import {
     ToggleButtonGroup,
     DropdownButton,
@@ -165,6 +165,9 @@ class SearchForm extends React.Component {
                                                     <MenuItem eventKey="1">Nazwa grupy 1</MenuItem>
                                                     <MenuItem eventKey="2">Nazwa grupy 2</MenuItem>
                                                 </DropdownButton>
+                                            </td>
+                                            <td>
+                                                <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
                                             <td>
                                                 <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>

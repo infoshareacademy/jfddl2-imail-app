@@ -35,6 +35,9 @@ const MainMenu = props => (
         <LinkContainer to="/Groups">
           <NavItem>Grupy</NavItem>
         </LinkContainer>
+        <LinkContainer to="/MailingList">
+          <NavItem>Lista wysyłkowa</NavItem>
+        </LinkContainer>
         <LinkContainer to="/Added">
           <NavItem>Ulubione</NavItem>
         </LinkContainer>

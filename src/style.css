@@ -1,0 +1,8 @@
+.box {
+
+    border: 1px solid lightgrey;
+    width: 440px;
+    border-radius: 20ps;
+    padding: 15px;
+    box-shadow: 0px 0px 10px lightgrey;
+}

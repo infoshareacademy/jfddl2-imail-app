@@ -5,7 +5,8 @@ import {
     FormControl,
     FormGroup,
 } from 'react-bootstrap'
-
+// import CSSModules from 'react-css-modules';
+// import styles from '../../style.css'
 
 class AddForm extends React.Component {
     constructor() {
@@ -72,7 +73,7 @@ class AddForm extends React.Component {
         return (
             <div style={{
                 border: "1px solid lightgrey",
-                width: 440,
+                width: 430,
                 borderRadius: 20,
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
@@ -114,3 +115,4 @@ class AddForm extends React.Component {
 }
 
 export default AddForm
+// export default CSSModules(AddForm, styles);

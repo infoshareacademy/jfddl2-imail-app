@@ -48,14 +48,14 @@ class Groups extends React.Component {
         return (
             <div style={{
                 border: "1px solid lightgrey",
-                width: 440,
+                maxWidth: "100%",
                 borderRadius: 20,
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
             }}>
                 <h2>Grupy</h2>
                 <br/>
-                <form style={{width: 400}} onSubmit={this.handleSubmit}>
+                <form style={{width: 500}} onSubmit={this.handleSubmit}>
                     <InputGroup>
                         <FormControl
                             type="text"

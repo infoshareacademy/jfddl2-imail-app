@@ -11,7 +11,6 @@ class EditProfile extends React.Component {
 
     return (
         <div>
-          <h2>Mój Profil</h2>
           <UserForm user={user}/>
         </div>
     )

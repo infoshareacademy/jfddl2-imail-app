@@ -47,16 +47,15 @@ class ShareLinkForm extends React.Component {
                     type="text"
                     value={this.state.name}
                     onChange={this.handleNameInputChange}
-                /><br/>
+                />
                     adres e-mail <input
                     type="text"
                     value={this.state.email}
                     onChange={this.handleEmailInputChange}
-                /><br>
+                />
                     <button onClick={this.handleAddUser}>
                         Wyślij
                     </button>
-                </br>
                 </form>
             </div>
                 )

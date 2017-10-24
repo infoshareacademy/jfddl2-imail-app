@@ -161,9 +161,12 @@ class SearchForm extends React.Component {
                                                 {group}
                                             </td>
                                             <td>
-                                                <DropdownButton bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
-                                                    <MenuItem eventKey="1">Nazwa grupy 1</MenuItem>
-                                                    <MenuItem eventKey="2">Nazwa grupy 2</MenuItem>
+                                                <DropdownButton onSelect={(event)=>{console.log('group select', event, id)}} bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
+                                                    {Object.entries(this.props.groups).map((keyValueArr)=>{
+                                                        let groupId = keyValueArr[0]
+                                                        let groupName = keyValueArr[1]
+                                                        return <MenuItem eventKey={groupId}>{groupName}</MenuItem>
+                                                    })}
                                                 </DropdownButton>
                                             </td>
                                             <td>
@@ -187,7 +190,8 @@ class SearchForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    contacts: state.contacts.contactsList
+    contacts: state.contacts.contactsList,
+    groups: state.groups.groupsList
 })
 
 export default connect(

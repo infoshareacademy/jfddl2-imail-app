@@ -21,6 +21,13 @@ class UserForm extends React.Component {
     })
   }
 
+  handleNameChange = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      displayName: event.target.value
+    })
+  }
+
   render() {
     const user = auth().currentUser;
     return (<div style={{
@@ -34,17 +41,22 @@ class UserForm extends React.Component {
 
           <form style={{width: 400}} onSubmit={this.handleSave}>
             <FormGroup controlId={'formControlsText'}>
-              <ControlLabel>{'Imię i Nazwisko'}</ControlLabel>
-              <FormControl type={'text'} value={this.state.displayName}/>
+              <ControlLabel>{'Imię i Nazwisko:'}</ControlLabel>
+              <FormControl type={'text'}
+                           onChange={this.handleNameChange}
+                           value={this.state.displayName}
+                           placeholder={this.state.displayName}/>
             </FormGroup>
 
             <FormGroup controlId={'formControlsEmail'}>
-              <ControlLabel>{'Email'}</ControlLabel>
-              <FormControl type={'email'} value={this.props.user.email}/>
+              <ControlLabel>{'Email:'}</ControlLabel>
+              <FormControl type={'email'}
+                           // value={this.props.user.email}
+                            placeholder={this.state.email}/>
             </FormGroup>
 
             <FormGroup controlId={'formControlsPassword'}>
-              <ControlLabel>{'Hasło'}</ControlLabel>
+              <ControlLabel>{'Hasło:'}</ControlLabel>
               <FormControl type={'Password'} value={this.props.user.password}/>
             </FormGroup>
 
@@ -54,7 +66,7 @@ class UserForm extends React.Component {
             }} src={this.props.user.photoURL}/>
 
             <FormGroup controlId={'formControlsAvatar'}>
-              <ControlLabel>{'Plik'}</ControlLabel>
+              <ControlLabel>{'Plik:'}</ControlLabel>
               <FormControl type={'File'} value={user.email}/>
             </FormGroup><br/>
             <Button bsStyle={"warning"} style={{width: 400}} type="submit">

@@ -78,7 +78,6 @@ class AddForm extends React.Component {
         return (
             <div style={{
                 border: "1px solid lightgrey",
-
                 borderRadius: 20,
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
@@ -90,8 +89,8 @@ class AddForm extends React.Component {
                     <Row className="show-grid">
                         <Col md={6} mdPush={6}>
                             <div style={{width:"85%"}}>
-                                <Panel header={"Pomoc"}>
-                                    Dodaj użytkowników do swojej bazy, bedzięsz mógł/mogła ich wykorzystać do stworzenia swojej bazy mailingowej.
+                                <Panel style={{color:"grey"}} header={"Pomoc"}>
+                                    Dodaj użytkowników do swojej bazy, bedzięsz mógł ich wykorzystać do stworzenia swojej bazy mailingowej.
                                     Pamiętaj im więcej tym lepiej...
                                     <br/><br/>
                                     W niedługim czasie zamierzamy wprowadzić importowanie użytkowników z pliku.

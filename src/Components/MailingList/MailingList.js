@@ -36,8 +36,8 @@ class MailingList extends React.Component {
                         <Col md={6} mdPush={6}>
                             <ControlLabel>Adres nadawcy</ControlLabel>
                             <FormControl style={{width: 400}}
-                                         type="text"
-                                         placeholder="jan@przykladowy.pl"
+                                         type="email"
+                                         placeholder="jan@przykladowy.com"
                                 // onChange={this.handleGroupInputChange}
                                 // value={this.state.newGroupName}
                             />
@@ -58,7 +58,9 @@ class MailingList extends React.Component {
                 <FormGroup controlId="formControlsTextarea">
                     <FormControl style={{height: 500}} componentClass="textarea" placeholder="Napisz treść maila..."/>
                 </FormGroup>
-                <Button style={{width: 100}} bsStyle="primary">Wyślij</Button>
+
+                <Button style={{width: 100}} bsStyle="primary pull-right">Wyślij</Button>
+                <p style={{color:"grey"}}>Pamiętaj aby sprawdzić błędy...</p>
 
             </div>
         )

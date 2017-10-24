@@ -1,10 +1,19 @@
 import React from 'react'
-import { auth } from '../../firebase'
+import {auth} from '../../firebase'
+import UserForm from "./UserForm";
 
 
 class EditProfile extends React.Component {
-  render(){
-    return <div>{JSON.stringify(auth().currentUser)}</div>
+
+  render() {
+    const user = auth().currentUser;
+
+
+    return (
+        <div>
+          <UserForm user={user}/>
+        </div>
+    )
   }
 }
 

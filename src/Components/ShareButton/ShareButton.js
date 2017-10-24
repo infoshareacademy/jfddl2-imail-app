@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  Grid, Row, Col
+  Row, Col
 } from 'react-bootstrap'
 import {
   ShareButtons,
@@ -26,7 +26,6 @@ class ShareButton extends Component {
     return (
         <div className="Demo__container">
 
-          {/*<Grid>*/}
             <Row>
               <Col xs={6}>
                 <div className="Demo__some-network">
@@ -54,7 +53,6 @@ class ShareButton extends Component {
                 </div>
               </Col>
             </Row>
-          {/*</Grid>*/}
         </div>
     );
   }

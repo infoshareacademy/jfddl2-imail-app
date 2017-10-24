@@ -1,6 +1,8 @@
 import React from 'react'
 import {
     ToggleButtonGroup,
+    DropdownButton,
+    MenuItem,
     ToggleButton,
     Table,
     InputGroup,
@@ -12,7 +14,7 @@ import {
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import { database } from '../../firebase'
+import {database} from '../../firebase'
 
 const filters = {
     gender_male: gender => gender.male === 'Mężczyzna',
@@ -39,7 +41,8 @@ class SearchForm extends React.Component {
         error: null,
         addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
         searchInput: '',
-        gender: false
+        gender: false,
+        addGroup: ''
     }
 
     searchHandler = (event) => {
@@ -75,36 +78,44 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Wyszukaj</h1>
+            <div style={{
+                border: "1px solid lightgrey",
+                borderRadius: 20,
+                padding: 15,
+                boxShadow: "0px 0px 10px lightgrey"
+            }}>
+                <h2>Wyszukaj</h2>
+                <br/>
                 <form>
                     <InputGroup>
-                        <FormControl onChange={this.searchHandler} value={this.state.searchInput}/>
+                        <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
-                            <Button>
+                            <Button bsStyle="primary">
                                 <Glyphicon glyph="search"/> Wyszukaj
-                            </Button>
+                            </Button><p style={{width:160}}></p>
                         </InputGroup.Button>
+
+                        <ButtonToolbar bsStyle="primary">
+                            <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options"
+                                               defaultValue={false}>
+                                <ToggleButton bsStyle="warning" value={false}>
+                                    Wszyscy
+                                </ToggleButton>
+                                <ToggleButton bsStyle="warning" value={'kobieta'}>Kobiety</ToggleButton>
+
+                                <ToggleButton bsStyle="warning" value={'meżczyzna'}>Mężczyźni</ToggleButton>
+                            </ToggleButtonGroup>
+                        </ButtonToolbar>
                     </InputGroup>
+                    <br/>
 
-                    <ButtonToolbar>
-                        <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options"
-                                           defaultValue={false}>
-                            <ToggleButton value={false}>
-                                Wszyscy
-                            </ToggleButton>
-                            <ToggleButton value={'kobieta'}>Kobiety</ToggleButton>
-
-                            <ToggleButton value={'meżczyzna'}>Mężczyźni</ToggleButton>
-                        </ToggleButtonGroup>
-                    </ButtonToolbar>
                 </form>
-
+                <br/>
 
                 {
                     this.props.contacts !== null ?
-                        <Table striped bordered condensed hover style={{
-                            marginTop: 20
+                        <Table  striped bordered condensed hover style={{
+                            marginTop: 20, color: "black"
                         }}>
                             <thead>
                             <tr>
@@ -114,7 +125,10 @@ class SearchForm extends React.Component {
                                 <th>Miasto</th>
                                 <th>Płeć</th>
                                 {/*<th>Zdjęcie</th>*/}
+                                <th>Grupa</th>
+                                <th>Dodaj grupę</th>
                                 <th>Szczegóły</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -126,7 +140,7 @@ class SearchForm extends React.Component {
                                         || user.email.includes(this.state.searchInput)
                                         || user.city.includes(this.state.searchInput)
                                 }).map(
-                                    ({id, fullname, city, gender, email, avatar}, index) => (
+                                    ({id, fullname, city, gender, email, avatar, group}, index) => (
                                         <tr key={id}>
                                             <td>
                                                 {id}
@@ -144,7 +158,16 @@ class SearchForm extends React.Component {
                                                 {gender}
                                             </td>
                                             <td>
-                                                <Link to={'/final-results/' + id}>Zobacz</Link>
+                                                {group}
+                                            </td>
+                                            <td>
+                                                <DropdownButton bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
+                                                    <MenuItem eventKey="1">Nazwa grupy 1</MenuItem>
+                                                    <MenuItem eventKey="2">Nazwa grupy 2</MenuItem>
+                                                </DropdownButton>
+                                            </td>
+                                            <td>
+                                                <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
                                         </tr>
                                     )
@@ -163,7 +186,7 @@ class SearchForm extends React.Component {
 
 }
 
-    const mapStateToProps = state => ({
+const mapStateToProps = state => ({
     contacts: state.contacts.contactsList
 })
 

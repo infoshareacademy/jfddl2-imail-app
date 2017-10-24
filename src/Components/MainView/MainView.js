@@ -4,15 +4,12 @@ import {
   Navbar,
   Nav,
   NavItem,
-  Button,
 } from 'react-bootstrap'
-import {
-  Link
-} from 'react-router-dom'
+
 import {
   LinkContainer
 } from 'react-router-bootstrap'
-import ListingBase from "../ListingBase/ListingBase";
+
 import { signOut } from '../../state/auth'
 
 // import logo from './logo.svg'
@@ -41,13 +38,13 @@ const MainMenu = props => (
         <LinkContainer to="/Added">
           <NavItem>Ulubione</NavItem>
         </LinkContainer>
-        <NavItem onClick={props.signOutHelper}>Wyloguj</NavItem>
         <NavItem>
           <ShareButton/>
         </NavItem>
         <LinkContainer to="/EditProfile">
           <NavItem>Mój Profil</NavItem>
         </LinkContainer>
+        <NavItem onClick={props.signOutHelper}>Wyloguj</NavItem>
       </Nav>
     </Navbar>
 )

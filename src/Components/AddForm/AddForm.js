@@ -45,29 +45,6 @@ class AddForm extends React.Component {
     });
   }
 
-  handleAddUser = (event) => {
-    event.preventDefault();
-    console.log(this.state.addedUsers);
-    let newUser = {
-      id: Date.now(),
-      avatar: "https://llw.azureedge.net/2017-07-04T13.10.30.308Z/images/avatar-default.svg",
-      fullname: this.state.name,
-      email: this.state.email,
-      gender: this.state.gender,
-      city: this.state.city
-    };
-
-    this.setState({
-      addedUsers: this.state.addedUsers.concat(newUser),
-      name: '',
-      email: '',
-      gender: '',
-      city: ''
-    }, () => {
-      localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
-    });
-  }
-
   render() {
     return (
         <div>

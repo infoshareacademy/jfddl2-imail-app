@@ -170,7 +170,7 @@ class SearchForm extends React.Component {
                                                 <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
                                             <td>
-                                                <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
+                                                <Button><Link to={'/Newsletter/'}>Wyślij e-mail</Link></Button>
                                             </td>
                                         </tr>
                                     )

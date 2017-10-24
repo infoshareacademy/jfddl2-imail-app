@@ -7,6 +7,7 @@ import {
 import {
     Grid
 } from 'react-bootstrap'
+import { storage } from './firebase'
 
 import MainView from './Components/MainView/MainView'
 import Added from './Components/Added/Added'

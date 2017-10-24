@@ -25,9 +25,9 @@ class UserForm extends React.Component {
   render() {
     const user = auth().currentUser;
     return (
-        <form onSubmit={this.handleSave}>
+        <form style={{width:400}} onSubmit={this.handleSave}>
           <FormGroup controlId={'formControlsText'}>
-            <ControlLabel>{'Full Name'}</ControlLabel>
+            <ControlLabel>{'Imię i Nazwisko'}</ControlLabel>
             <FormControl type={'text'} value={this.state.displayName}/>
           </FormGroup>
 
@@ -44,11 +44,11 @@ class UserForm extends React.Component {
           <img style={{maxWidth: 100}} src={this.props.user.photoURL}/>
 
           <FormGroup controlId={'formControlsAvatar'}>
-            <ControlLabel>{'File'}</ControlLabel>
+            <ControlLabel>{'Plik'}</ControlLabel>
             <FormControl type={'File'} value={user.email}/>
-          </FormGroup>
-          <Button type="submit">
-            Submit
+          </FormGroup><br/>
+          <Button style={{width:400}} type="submit">
+            Zapisz zmiany
           </Button>
 
         </form>

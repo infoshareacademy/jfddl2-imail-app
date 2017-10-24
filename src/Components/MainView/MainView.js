@@ -41,13 +41,13 @@ const MainMenu = props => (
         <LinkContainer to="/Added">
           <NavItem>Ulubione</NavItem>
         </LinkContainer>
-        <NavItem onClick={props.signOutHelper}>Wyloguj</NavItem>
         <NavItem>
           <ShareButton/>
         </NavItem>
         <LinkContainer to="/EditProfile">
           <NavItem>Mój Profil</NavItem>
         </LinkContainer>
+        <NavItem onClick={props.signOutHelper}>Wyloguj</NavItem>
       </Nav>
     </Navbar>
 )

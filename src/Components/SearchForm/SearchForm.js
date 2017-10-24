@@ -78,27 +78,32 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{
+                border: "1px solid lightgrey",
+                borderRadius: 20,
+                padding: 15,
+                boxShadow: "0px 0px 10px lightgrey"
+            }}>
                 <h2>Wyszukaj</h2>
                 <br/>
                 <form>
                     <InputGroup>
                         <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
-                            <Button>
+                            <Button bsStyle="primary">
                                 <Glyphicon glyph="search"/> Wyszukaj
                             </Button><p style={{width:160}}></p>
                         </InputGroup.Button>
 
-                        <ButtonToolbar>
+                        <ButtonToolbar bsStyle="primary">
                             <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options"
                                                defaultValue={false}>
-                                <ToggleButton value={false}>
+                                <ToggleButton bsStyle="warning" value={false}>
                                     Wszyscy
                                 </ToggleButton>
-                                <ToggleButton value={'kobieta'}>Kobiety</ToggleButton>
+                                <ToggleButton bsStyle="warning" value={'kobieta'}>Kobiety</ToggleButton>
 
-                                <ToggleButton value={'meżczyzna'}>Mężczyźni</ToggleButton>
+                                <ToggleButton bsStyle="warning" value={'meżczyzna'}>Mężczyźni</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonToolbar>
                     </InputGroup>
@@ -109,8 +114,8 @@ class SearchForm extends React.Component {
 
                 {
                     this.props.contacts !== null ?
-                        <Table striped bordered condensed hover style={{
-                            marginTop: 20
+                        <Table  striped bordered condensed hover style={{
+                            marginTop: 20, color: "black"
                         }}>
                             <thead>
                             <tr>
@@ -156,7 +161,7 @@ class SearchForm extends React.Component {
                                                 {group}
                                             </td>
                                             <td>
-                                                <DropdownButton title="Dodaj do grupy" id="bg-vertical-dropdown-1">
+                                                <DropdownButton bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
                                                     <MenuItem eventKey="1">Nazwa grupy 1</MenuItem>
                                                     <MenuItem eventKey="2">Nazwa grupy 2</MenuItem>
                                                 </DropdownButton>

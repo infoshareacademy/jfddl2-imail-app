@@ -4,15 +4,12 @@ import {
   Navbar,
   Nav,
   NavItem,
-  Button,
 } from 'react-bootstrap'
-import {
-  Link
-} from 'react-router-dom'
+
 import {
   LinkContainer
 } from 'react-router-bootstrap'
-import ListingBase from "../ListingBase/ListingBase";
+
 import { signOut } from '../../state/auth'
 
 // import logo from './logo.svg'

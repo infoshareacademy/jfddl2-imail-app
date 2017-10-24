@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-    ControlLabel,
     Button,
     FormControl,
     FormGroup,
@@ -71,11 +70,17 @@ class AddForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{
+                border: "1px solid lightgrey",
+                width: 440,
+                borderRadius: 20,
+                padding: 15,
+                boxShadow: "0px 0px 10px lightgrey"
+            }}>
                 <h2>Dodaj do listy</h2>
                 <br/>
 
-                <form style={{width: 400}} onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <FormControl type="text" placeholder="imie i nazwisko" value={this.state.name}
                                      onChange={this.handleNameInputChange}/>
@@ -99,7 +104,7 @@ class AddForm extends React.Component {
                         </FormControl>
                     </FormGroup>
                     <br/>
-                    <Button style={{width: 400}} onClick={this.handleAddUser}>Zapisz
+                    <Button bsStyle="primary" style={{width: 400}} onClick={this.handleAddUser}>Zapisz
                     </Button>
                 </form>
 

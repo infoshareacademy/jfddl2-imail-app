@@ -46,7 +46,13 @@ class Groups extends React.Component {
     render() {
 
         return (
-            <div>
+            <div style={{
+                border: "1px solid lightgrey",
+                width: 440,
+                borderRadius: 20,
+                padding: 15,
+                boxShadow: "0px 0px 10px lightgrey"
+            }}>
                 <h2>Grupy</h2>
                 <br/>
                 <form style={{width: 400}} onSubmit={this.handleSubmit}>
@@ -57,7 +63,7 @@ class Groups extends React.Component {
                             onChange={this.handleGroupInputChange}
                             value={this.state.newGroupName}/>
                         <InputGroup.Button>
-                            <Button onClick={this.handleAddGroup}>
+                            <Button bsStyle="primary" onClick={this.handleAddGroup}>
                                 <Glyphicon glyph="plus-sign"/> Dodaj
                             </Button>
                         </InputGroup.Button>
@@ -78,7 +84,7 @@ class Groups extends React.Component {
                     {Object.values(this.props.groups).map((group, index) => {
                         return <tr key={index}>
                             <td>{group}</td>
-                            <td><Button onClick={this.handleDeleteGroup}><Glyphicon glyph="minus-sign"/> Usuń
+                            <td><Button bsStyle="danger" onClick={this.handleDeleteGroup}><Glyphicon glyph="minus-sign"/> Usuń
                                 grupę</Button></td>
                         </tr>
                     })}

@@ -42,7 +42,12 @@ class SearchForm extends React.Component {
         addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
         searchInput: '',
         gender: false,
-        addGroup: ''
+        groups: ''
+    }
+
+    addToGroup = (groupId, userId) => {
+        console.log(groupId, userId)
+
     }
 
     searchHandler = (event) => {
@@ -88,11 +93,12 @@ class SearchForm extends React.Component {
                 <br/>
                 <form>
                     <InputGroup>
-                        <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler} value={this.state.searchInput}/>
+                        <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler}
+                                     value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button bsStyle="primary">
                                 <Glyphicon glyph="search"/> Wyszukaj
-                            </Button><p style={{width:160}}></p>
+                            </Button><p style={{width: 160}}></p>
                         </InputGroup.Button>
 
                         <ButtonToolbar bsStyle="primary">
@@ -114,7 +120,7 @@ class SearchForm extends React.Component {
 
                 {
                     this.props.contacts !== null ?
-                        <Table  striped bordered condensed hover style={{
+                        <Table striped bordered condensed hover style={{
                             marginTop: 20, color: "black"
                         }}>
                             <thead>
@@ -158,11 +164,13 @@ class SearchForm extends React.Component {
                                                 {gender}
                                             </td>
                                             <td>
-                                                {group}
+                                                {/*{groups}*/}
                                             </td>
                                             <td>
-                                                <DropdownButton onSelect={(event)=>{console.log('group select', event, id)}} bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
-                                                    {Object.entries(this.props.groups).map((keyValueArr)=>{
+                                                <DropdownButton onSelect={(event) => {
+                                                    this.addToGroup(event, id)
+                                                }} bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
+                                                    {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
                                                         let groupName = keyValueArr[1]
                                                         return <MenuItem eventKey={groupId}>{groupName}</MenuItem>

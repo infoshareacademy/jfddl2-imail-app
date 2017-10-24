@@ -15,6 +15,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import {database} from '../../firebase'
+    import Newsletter from "../Newsletter/Newsletter";
 
 const filters = {
     gender_male: gender => gender.male === 'Mężczyzna',
@@ -170,7 +171,8 @@ class SearchForm extends React.Component {
                                                 <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
                                             <td>
-                                                <Button><Link to={'/Newsletter/'}>Wyślij e-mail</Link></Button>
+                                                <Newsletter email={email}/>
+
                                             </td>
                                         </tr>
                                     )

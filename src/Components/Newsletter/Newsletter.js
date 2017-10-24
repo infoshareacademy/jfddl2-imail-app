@@ -7,25 +7,31 @@ class Newsletter extends React.Component {
     }
 
     handleEmailButton = (event) => {
-        console.log(event)
-
         const init = {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "authorization": "Basic YTZlZDk1YTZiZGMzMDRkOGExYzYxZTc4NWE1YzE0MmY5MzU0YmZjNDozNzBhOGMyMzVmNzdkYmUxMmYwNjFmMjAwN2NjNjlhZmM2MDI2ZTM3"
             },
-            body: {
-                'to': event.target.value,
-                'subject': "Powitanie",
-                'text': "Witamy serdecznie w Instant Mail.",
-                'from': "Instant Mail"
-            }
+            body: JSON.stringify({
+                "to": this.props.email,
+                "subject": "Powitanie",
+                "text": "Witamy serdecznie w Instant Mail.",
+                "from": "Instant Mail"
+            })
         };
 
-        const request = new Request('https://api.emaillabs.net.pl/api/new_sendmail', init);
+        console.log(init)
 
-        fetch(request).then(
-            response => response.json()
+        fetch('https://api.emaillabs.net.pl/api/new_sendmail', init).then(
+            response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw Error('Api response not ok', response
+                )
+            }
         ).catch(
             error => console.error(error)
         );

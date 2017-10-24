@@ -59,47 +59,59 @@ class FinalResult extends React.Component {
 
   render() {
     const isFavouriteUser = () => {
-      let array = this.state.favourites.filter((favUser)=>{
+      let array = this.state.favourites.filter((favUser) => {
         return favUser.id === this.state.finalUser.id
       })
       return array.length > 0
     }
 
     return (
-        <div>
+
+        <div style={{
+          border: "1px solid lightgrey",
+          width: 440,
+          borderRadius: 20,
+          padding: 15,
+          boxShadow: "0px 0px 10px lightgrey"
+        }}><h2>Szczegóły Kontaktu</h2><br/>
           {this.state.finalUser ?
-              <form style={{width:400}} onSubmit={this.handleSave}>
-                  <img src={this.state.finalUser.avatar}/>
+              <form style={{width: 400}} onSubmit={this.handleSave}>
+                <img src={this.state.finalUser.avatar}/>
 
-              <FormGroup controlId={'formControlsText'}>
-                      <ControlLabel>{'ID'}</ControlLabel>
-                      <FormControl type={'text'} value={this.state.finalUser.id}/>
-                    </FormGroup>
+                <FormGroup controlId={'formControlsText'}>
+                  <ControlLabel>{'ID'}</ControlLabel>
+                  <FormControl type={'text'} value={this.state.finalUser.id}/>
+                </FormGroup>
 
-                      <FormGroup controlId={'formControlsText'}>
-                        <ControlLabel>{'Imię i Nazwisko'}</ControlLabel>
-                        <FormControl type={'text'} value={this.state.finalUser.fullname}/>
-                      </FormGroup>
-                      <FormGroup controlId={'formControlsEmail'}>
-                        <ControlLabel>{'Email'}</ControlLabel>
-                        <FormControl type={'email'} value={this.state.finalUser.email}/>
-                      </FormGroup>
-                      <FormGroup controlId={'formControlsCity'}>
-                        <ControlLabel>{'Miasto'}</ControlLabel>
-                        <FormControl type={'text'} value={this.state.finalUser.city}/>
-                      </FormGroup>
-                      <FormGroup controlId={'formControlsGender'}>
-                        <ControlLabel>{'Płeć'}</ControlLabel>
-                        <FormControl type={'text'} value={this.state.finalUser.gender}/>
-                      </FormGroup>
+                <FormGroup controlId={'formControlsText'}>
+                  <ControlLabel>{'Imię i Nazwisko'}</ControlLabel>
+                  <FormControl type={'text'} value={this.state.finalUser.fullname}/>
+                </FormGroup>
+                <FormGroup controlId={'formControlsEmail'}>
+                  <ControlLabel>{'Email'}</ControlLabel>
+                  <FormControl type={'email'} value={this.state.finalUser.email}/>
+                </FormGroup>
+                <FormGroup controlId={'formControlsCity'}>
+                  <ControlLabel>{'Miasto'}</ControlLabel>
+                  <FormControl type={'text'} value={this.state.finalUser.city}/>
+                </FormGroup>
+                <FormGroup controlId={'formControlsGender'}>
+                  <ControlLabel>{'Płeć'}</ControlLabel>
+                  <FormControl type={'text'} value={this.state.finalUser.gender}/>
+                </FormGroup>
 
-            {isFavouriteUser() ? <Button style={{width: 400}} onClick={this.handleDeleteFavUser}> Usuń z Ulubionych </Button> : <Button style={{width: 400}} onClick={this.handleAddFavUser}> Dodaj do ulubionych</Button>}
+                {isFavouriteUser() ?
+                    <Button bsStyle={"danger"} style={{width: 400}} onClick={this.handleDeleteFavUser}> Usuń z
+                      Ulubionych </Button> :
+                    <Button bsStyle={"primary"} style={{width: 400}} onClick={this.handleAddFavUser}> Dodaj do
+                      ulubionych</Button>}
 
 
-</form>
+              </form>
               : 'Ładowanie'}
 
         </div>
+
     )
   }
 }

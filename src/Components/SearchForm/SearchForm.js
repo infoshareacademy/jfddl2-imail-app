@@ -79,30 +79,33 @@ class SearchForm extends React.Component {
     render() {
         return (
             <div>
-                <h1>Wyszukaj</h1>
+                <h2>Wyszukaj</h2>
+                <br/>
                 <form>
                     <InputGroup>
-                        <FormControl onChange={this.searchHandler} value={this.state.searchInput}/>
+                        <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler} value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button>
                                 <Glyphicon glyph="search"/> Wyszukaj
-                            </Button>
+                            </Button><p style={{width:160}}></p>
                         </InputGroup.Button>
+
+                        <ButtonToolbar>
+                            <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options"
+                                               defaultValue={false}>
+                                <ToggleButton value={false}>
+                                    Wszyscy
+                                </ToggleButton>
+                                <ToggleButton value={'kobieta'}>Kobiety</ToggleButton>
+
+                                <ToggleButton value={'meżczyzna'}>Mężczyźni</ToggleButton>
+                            </ToggleButtonGroup>
+                        </ButtonToolbar>
                     </InputGroup>
+                    <br/>
 
-                    <ButtonToolbar>
-                        <ToggleButtonGroup onChange={this.genderHandler} type="radio" name="options"
-                                           defaultValue={false}>
-                            <ToggleButton value={false}>
-                                Wszyscy
-                            </ToggleButton>
-                            <ToggleButton value={'kobieta'}>Kobiety</ToggleButton>
-
-                            <ToggleButton value={'meżczyzna'}>Mężczyźni</ToggleButton>
-                        </ToggleButtonGroup>
-                    </ButtonToolbar>
                 </form>
-
+                <br/>
 
                 {
                     this.props.contacts !== null ?

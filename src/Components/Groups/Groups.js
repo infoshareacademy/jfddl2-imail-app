@@ -2,17 +2,23 @@ import React from 'react'
 
 import {
     Button,
-    Table
+    Table,
+    FormControl,
+    InputGroup,
+    ControlLabel,
+    Glyphicon
+
 } from 'react-bootstrap'
 
 import {connect} from 'react-redux'
 
-import { addGroup } from '../../state/groups'
+import {addGroup} from '../../state/groups'
 
 class Groups extends React.Component {
 
     state = {
-        addgroup: ''
+        addgroup: '',
+        newGroupName: ''
     }
 
     handleGroupInputChange = (event) => {
@@ -41,38 +47,39 @@ class Groups extends React.Component {
 
         return (
             <div>
-                <h1>Grupy</h1>
-                <form
-                    onSubmit={this.handleSubmit}
-                >
-                    Nazwa grupy <input
-                    type="text"
-                    value={this.state.newGroupName}
-                    onChange={this.handleGroupInputChange}
-                />
-                    <Button onClick={this.handleAddGroup}>
-                      Utwórz
-                    </Button>
+                <h2>Grupy</h2>
+                <br/>
+                <form style={{width: 400}} onSubmit={this.handleSubmit}>
+                    <InputGroup>
+                        <FormControl
+                            type="text"
+                            placeholder="Wpisz nową nazwę grupy..."
+                            onChange={this.handleGroupInputChange}
+                            value={this.state.newGroupName}/>
+                        <InputGroup.Button>
+                            <Button onClick={this.handleAddGroup}>
+                                <Glyphicon glyph="plus-sign"/> Dodaj
+                            </Button>
+                        </InputGroup.Button>
+                    </InputGroup>
                 </form>
-
-
                 <Table striped bordered condensed hover style={{
-                    marginTop: 20
+                    marginTop: 50
                 }}>
                     <thead>
                     <tr>
-                        {/*<th>ID</th>*/}
                         <th>Nazwa grupy</th>
-                        <th>Akcja</th>
+                        <th style={{width: 20}}>Akcja</th>
                     </tr>
                     </thead>
 
 
                     <tbody>
-                    {Object.values(this.props.groups).map((group, index)=>{
-                        return <tr key = {index}>
+                    {Object.values(this.props.groups).map((group, index) => {
+                        return <tr key={index}>
                             <td>{group}</td>
-                            <td><Button onClick={this.handleDeleteGroup}>Usuń grupę</Button></td>
+                            <td><Button onClick={this.handleDeleteGroup}><Glyphicon glyph="minus-sign"/> Usuń
+                                grupę</Button></td>
                         </tr>
                     })}
                     </tbody>
@@ -92,7 +99,6 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
     groups: state.groups.groupsList
 })
-
 
 
 export default connect(

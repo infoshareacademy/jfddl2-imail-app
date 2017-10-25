@@ -14,6 +14,9 @@ export const addGroup = name => dispatch => {
     database().ref('groups').push(name)
 }
 
+export const delGroup = id => dispatch => {
+    database().ref(`groups/${id}`).remove()
+}
 
 const setGroups = groups => ({
     type: SET_GROUPS,

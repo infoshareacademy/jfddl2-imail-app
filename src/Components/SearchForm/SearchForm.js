@@ -14,6 +14,8 @@ import {
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import { toggleGroupToUser } from '../../state/contacts'
+
 import {database} from '../../firebase'
 
 const filters = {
@@ -45,10 +47,6 @@ class SearchForm extends React.Component {
         groups: ''
     }
 
-    addToGroup = (groupId, userId) => {
-        console.log(groupId, userId)
-
-    }
 
     searchHandler = (event) => {
         this.setState({
@@ -130,8 +128,6 @@ class SearchForm extends React.Component {
                                 <th>Adres e-mail</th>
                                 <th>Miasto</th>
                                 <th>Płeć</th>
-                                {/*<th>Zdjęcie</th>*/}
-                                <th>Grupa</th>
                                 <th>Dodaj grupę</th>
                                 <th>Szczegóły</th>
 
@@ -164,16 +160,15 @@ class SearchForm extends React.Component {
                                                 {gender}
                                             </td>
                                             <td>
-                                                {/*{groups}*/}
-                                            </td>
-                                            <td>
                                                 <DropdownButton onSelect={(event) => {
-                                                    this.addToGroup(event, id)
+                                                    this.props.toggleGroup(id, event)
                                                 }} bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
                                                     {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
                                                         let groupName = keyValueArr[1]
-                                                        return <MenuItem eventKey={groupId}>
+                                                        return <MenuItem
+                                                            eventKey={groupId}
+                                                        >
                                                             {groups && groups.includes(groupId) ? 'X ' : ''}
                                                             {groupName}
                                                         </MenuItem>
@@ -205,6 +200,11 @@ const mapStateToProps = state => ({
     groups: state.groups.groupsList
 })
 
+const mapDispatchToProps = dispatch => ({
+    toggleGroup: (userId, groupId) => {dispatch(toggleGroupToUser(userId, groupId))}
+})
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(SearchForm)

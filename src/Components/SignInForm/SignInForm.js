@@ -50,12 +50,13 @@ class SignInForm extends React.Component {
         >
         </FormControl><br/>
 
-        <Button bsStyle={"warning"}>Zaloguj</Button>
+        <Button type={"submit"} bsStyle={"warning"}>Zaloguj</Button>
         <Button bsStyle={"primary"} onClick={event => {
           event.preventDefault()
           this.props.signInWithGoogle()
         }}>Google</Button>
       </form></div>
+
     )
   }
 }

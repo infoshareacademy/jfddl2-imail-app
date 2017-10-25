@@ -47,14 +47,6 @@ class FinalResult extends React.Component {
     });
   }
 
-    handleAddFavUser = (event) => {
-        event.preventDefault();
-        this.setState({
-            favourites: this.state.favourites.concat(this.state.finalUser)
-        }, () => {
-            localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
-        });
-    }
 
 
     handleDeleteFavUser = (event) => {
@@ -68,33 +60,6 @@ class FinalResult extends React.Component {
         });
     }
 
-    render() {
-        const isFavouriteUser = () => {
-            let array = this.state.favourites.filter((favUser) => {
-                return favUser.id === this.state.finalUser.id
-            })
-            return array.length > 0
-        }
-
-        return (
-            <div>
-                {this.state.finalUser ? <div>
-                        <ul>
-                            <img src={this.state.finalUser.avatar}/><br/>
-                            <strong>ID: </strong>{this.state.finalUser.id}<br/>
-                            <strong>Full Name: </strong>{this.state.finalUser.fullname}<br/>
-                            <strong>Email: </strong>{this.state.finalUser.email}<br/>
-                            <strong>City: </strong>{this.state.finalUser.city}<br/>
-                            <strong>Gender: </strong>{this.state.finalUser.gender}<br/>
-                        </ul>
-                        {isFavouriteUser() ? <button onClick={this.handleDeleteFavUser}> Usuń z Ulubionych </button> :
-                            <button onClick={this.handleAddFavUser}> Dodaj do ulubionych</button>}
-
-                    </div>
-                    : 'Ładowanie'}
-            </div>
-        )
-    }
 
   render() {
     const isFavouriteUser = () => {

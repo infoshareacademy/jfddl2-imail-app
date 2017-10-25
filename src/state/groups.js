@@ -14,6 +14,7 @@ export const addGroup = name => dispatch => {
     database().ref('groups').push(name)
 }
 
+
 const setGroups = groups => ({
     type: SET_GROUPS,
     groups: groups

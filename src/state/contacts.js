@@ -10,6 +10,15 @@ export const init = () => dispatch => {
     )
 }
 
+
+export const toggleGroupToUser = (userId, groupId) => (dispatch, getState) => {
+    let userGroups = getState().contacts.contactsList[userId].groups
+    if(!userGroups.includes(groupId))
+        database().ref(`contacts/${userId}/groups/${userGroups.length}`).set(groupId)
+    else
+        database().ref(`contacts/${userId}/groups/${userGroups.indexOf(groupId)}`).remove()
+}
+
 const setContacts = contacts => ({
     type: SET_CONTACTS,
     contacts: contacts

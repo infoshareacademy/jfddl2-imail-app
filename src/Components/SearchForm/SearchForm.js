@@ -146,7 +146,7 @@ class SearchForm extends React.Component {
                                         || user.email.includes(this.state.searchInput)
                                         || user.city.includes(this.state.searchInput)
                                 }).map(
-                                    ({id, fullname, city, gender, email, avatar, group}, index) => (
+                                    ({id, fullname, city, gender, email, avatar, groups}, index) => (
                                         <tr key={id}>
                                             <td>
                                                 {id}
@@ -173,7 +173,10 @@ class SearchForm extends React.Component {
                                                     {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
                                                         let groupName = keyValueArr[1]
-                                                        return <MenuItem eventKey={groupId}>{groupName}</MenuItem>
+                                                        return <MenuItem eventKey={groupId}>
+                                                            {groups && groups.includes(groupId) ? 'X ' : ''}
+                                                            {groupName}
+                                                        </MenuItem>
                                                     })}
                                                 </DropdownButton>
                                             </td>

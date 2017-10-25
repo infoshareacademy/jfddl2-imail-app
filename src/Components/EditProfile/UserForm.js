@@ -1,6 +1,15 @@
 import React from 'react'
 import {auth, storage} from '../../firebase'
-import {Button, ControlLabel, FormControl, FormGroup} from 'react-bootstrap'
+import {
+    Button,
+    ControlLabel,
+    FormControl,
+    FormGroup,
+    Grid,
+    Row,
+    Col,
+    ButtonGroup
+} from 'react-bootstrap'
 import UploadProfilePhoto from "../UploadProfilePhoto/UploadprofilePhoto";
 
 class UserForm extends React.Component {
@@ -23,16 +32,16 @@ class UserForm extends React.Component {
 
         this.props.user.updateProfile({
             displayName: this.state.displayName,
-        }).then(()=>{
+        }).then(() => {
             console.log('user name updated')
         })
 
         this.props.user.updateEmail(
             this.state.email
-        ).then(()=>{
+        ).then(() => {
             console.log('user mail updated')
-        }).catch((error)=>{
-            if(error.code ==="auth/requires-recent-login") alert('Wymaga niedawnego zalogowania!')
+        }).catch((error) => {
+            if (error.code === "auth/requires-recent-login") alert('Wymaga niedawnego zalogowania!')
         })
 
         this.props.user.updatePassword(
@@ -70,7 +79,7 @@ class UserForm extends React.Component {
     handleUploadedPhoto = (photoURL) => {
         this.props.user.updateProfile({
             photoURL: photoURL
-        }).then(()=>{
+        }).then(() => {
             this.setState({
                 photoURL: photoURL
             })
@@ -82,58 +91,73 @@ class UserForm extends React.Component {
         const user = auth().currentUser;
         return (<div style={{
                 border: "1px solid lightgrey",
-                width: 440,
+                // width: 440,
                 borderRadius: 20,
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
             }}><h2>Mój Profil</h2>
                 <br/>
-
-                <form style={{width: 400}} onSubmit={this.handleSave}>
-                    <FormGroup controlId={'formControlsText'}>
-                        <ControlLabel>{'Imię i Nazwisko:'}</ControlLabel>
-
-                        <FormControl type={'text'}
-                                     onChange={this.handleNameChange}
-                                     value={this.state.displayName}/>
-                    </FormGroup>
-
-                    <FormGroup controlId={'formControlsEmail'}>
-                        <ControlLabel>{'Email:'}</ControlLabel>
-
-                        <FormControl type={'email'}
-                                     onChange={this.handleEmailChange}
-                                     value={this.state.email}/>
-                    </FormGroup>
-
-                    <FormGroup controlId={'formControlsPassword'}>
-                        <ControlLabel>{'Hasło:'}</ControlLabel>
-                        <FormControl type={'Password'}
-                                     onChange={this.handlePasswordChange}
-                                     value={this.state.password}/>
-                    </FormGroup>
+                <Grid>
+                    <Row className="show-grid">
+                        <Col md={6} mdPush={6}>
+                            <img className= {"center-block"} style={{
+                                maxWidth: 200,
+                                border: "5px solid white",
+                                borderRadius: 20,
+                                boxShadow: "0px 0px 15px lightgrey"
+                            }} src={this.state.photoURL}/>
 
 
-                    <img style={{
-                        maxWidth: 100,
-                        border: "1px solid lightgrey",
-                        borderRadius: 20
-                    }} src={this.state.photoURL}/>
+                            {/*<FormGroup controlId={'formControlsAvatar'}>*/}
+                            {/*<ControlLabel>{'Plik:'}</ControlLabel>*/}
 
-                    <UploadProfilePhoto callback={this.handleUploadedPhoto}/>
+                            {/*<FormControl type={'File'}*/}
+                            {/*onChange={this.handlePhotoChange} />*/}
+                            {/*</FormGroup><br/>*/}
+                        </Col>
 
-                    {/*<FormGroup controlId={'formControlsAvatar'}>*/}
-                        {/*<ControlLabel>{'Plik:'}</ControlLabel>*/}
+                        <Col md={6} mdPull={6}>
+                            <form onSubmit={this.handleSave}>
+                                <FormGroup controlId={'formControlsText'}>
+                                    <ControlLabel>{'Imię i Nazwisko:'}</ControlLabel>
 
-                        {/*<FormControl type={'File'}*/}
-                                     {/*onChange={this.handlePhotoChange} />*/}
-                    {/*</FormGroup><br/>*/}
+                                    <FormControl type={'text'}
+                                                 onChange={this.handleNameChange}
+                                                 value={this.state.displayName}/>
+                                </FormGroup>
 
-                    <Button bsStyle={"warning"} style={{width: 400}} type="submit">
-                        Zapisz zmiany
-                    </Button>
+                                <FormGroup controlId={'formControlsEmail'}>
+                                    <ControlLabel>{'Email:'}</ControlLabel>
 
-                </form>
+                                    <FormControl type={'email'}
+                                                 onChange={this.handleEmailChange}
+                                                 value={this.state.email}/>
+                                </FormGroup>
+
+                                <FormGroup controlId={'formControlsPassword'}>
+                                    <ControlLabel>{'Hasło:'}</ControlLabel>
+                                    <FormControl type={'Password'}
+                                                 onChange={this.handlePasswordChange}
+                                                 value={this.state.password}/>
+                                </FormGroup>
+                                <div style={{
+                                float: "right" }}>
+
+                                <UploadProfilePhoto callback={this.handleUploadedPhoto}/>
+
+                                </div>
+                                <div >
+
+                                <Button style={{height: 52}} bsStyle={"primary"} type="submit">
+                                    Zapisz zmiany
+                                </Button>
+
+                                </div>
+                            </form>
+                        </Col>
+                    </Row>
+                </Grid>
+
                 <br/>
             </div>
         )

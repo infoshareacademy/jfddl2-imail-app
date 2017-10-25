@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { storage } from '../../firebase'
-
+import { Button,} from 'react-bootstrap'
 class UploadProfilePhoto extends Component {
 
     state = {
@@ -45,7 +45,7 @@ class UploadProfilePhoto extends Component {
     render() {
         return <div className="App">
             <input type="file" onChange={this.handleFileChange} />
-            <button onClick={this.handleFileUpload}>Upload</button>
+            <Button bsStyle={"warning"} onClick={this.handleFileUpload}>Upload</Button>
             {this.state.progress ? <progress value={this.state.progress} max="100"></progress> : null}
         </div>
     }

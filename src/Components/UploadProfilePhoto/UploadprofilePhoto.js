@@ -31,9 +31,9 @@ class UploadProfilePhoto extends Component {
             this.setState({
                 progress
             })
-            console.log('Upload is ' + progress + '% done');
+
         }, (error) => {
-            console.log(error)
+
         }, () => {
             this.props.callback(uploadTask.snapshot.downloadURL)
             this.setState({
@@ -46,7 +46,7 @@ class UploadProfilePhoto extends Component {
         return <div className="App">
             <input type="file" onChange={this.handleFileChange} />
             <Button bsStyle={"warning"} onClick={this.handleFileUpload}>Upload</Button>
-            {this.state.progress ? <progress value={this.state.progress} max="100"></progress> : null}
+            {/*{this.state.progress ? <progress value={this.state.progress} max="100"></progress> : null}*/}
         </div>
     }
 }

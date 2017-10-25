@@ -50,9 +50,10 @@ class SignUpForm extends React.Component {
         >
         </FormControl><br/>
 
-        <Button bsStyle={"warning"}>Zarejestruj</Button>
 
-        HUE HUE HUE  :-)
+        <Button type={"submit"} bsStyle={"warning"}>Zarejestruj</Button>
+
+      
       </form></div>
     )
   }

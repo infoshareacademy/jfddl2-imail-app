@@ -6,6 +6,7 @@ import {
   NavItem,
 } from 'react-bootstrap'
 
+import {withRouter} from 'react-router-dom'
 import {
   LinkContainer
 } from 'react-router-bootstrap'
@@ -55,7 +56,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(
+export default withRouter(connect(
     null,
     mapDispatchToProps
-)(MainMenu)
+)(MainMenu))

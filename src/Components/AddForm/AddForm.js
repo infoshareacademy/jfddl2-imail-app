@@ -2,8 +2,12 @@ import React from 'react'
 
 import {
     Button,
+    Panel,
     FormControl,
     FormGroup,
+    Grid,
+    Row,
+    Col
 } from 'react-bootstrap'
 // import CSSModules from 'react-css-modules';
 // import styles from '../../style.css'
@@ -20,6 +24,7 @@ class AddForm extends React.Component {
             addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
         }
     }
+
 
     handleNameInputChange = (event) => {
         this.setState({
@@ -73,7 +78,6 @@ class AddForm extends React.Component {
         return (
             <div style={{
                 border: "1px solid lightgrey",
-                width: 430,
                 borderRadius: 20,
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
@@ -81,33 +85,52 @@ class AddForm extends React.Component {
                 <h2>Dodaj do listy</h2>
                 <br/>
 
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <FormControl type="text" placeholder="imie i nazwisko" value={this.state.name}
-                                     onChange={this.handleNameInputChange}/>
-                    </FormGroup>
+                <Grid>
+                    <Row className="show-grid">
+                        <Col md={6} mdPush={6}>
+                            <div style={{width:"85%"}}>
+                                <Panel style={{color:"grey"}} header={"Pomoc"}>
+                                    Dodaj użytkowników do swojej bazy, bedzięsz mógł ich wykorzystać do stworzenia swojej bazy mailingowej.
+                                    Pamiętaj im więcej tym lepiej...
+                                    <br/><br/>
+                                    W niedługim czasie zamierzamy wprowadzić importowanie użytkowników z pliku.
 
-                    <FormGroup>
-                        <FormControl type="email" placeholder="adres e-mail" value={this.state.email}
-                                     onChange={this.handleEmailInputChange}/>
-                    </FormGroup>
+                                </Panel>
+                            </div>
+                        </Col>
+                        <Col md={6} mdPull={6}>
+                            <form onSubmit={this.handleSubmit}>
+                                <FormGroup>
+                                    <FormControl type="text" placeholder="imie i nazwisko" value={this.state.name}
+                                                 onChange={this.handleNameInputChange}/>
+                                </FormGroup>
 
-                    <FormGroup>
-                        <FormControl type="text" placeholder="miasto" value={this.state.city}
-                                     onChange={this.handleCityInputChange}/>
-                    </FormGroup>
+                                <FormGroup>
+                                    <FormControl type="email" placeholder="adres e-mail" value={this.state.email}
+                                                 onChange={this.handleEmailInputChange}/>
+                                </FormGroup>
 
-                    <FormGroup  controlId="formControlsSelect">
-                        <FormControl onChange={this.handleGenderInputChange} componentClass="select" placeholder="wybierz płeć">
-                            <option value="">wybierz płeć...</option>
-                            <option value={"mężczyzna"}>mężczyzna</option>
-                            <option value={"kobieta"}>kobieta</option>
-                        </FormControl>
-                    </FormGroup>
-                    <br/>
-                    <Button bsStyle="primary" style={{width: 400}} onClick={this.handleAddUser}>Zapisz
-                    </Button>
-                </form>
+                                <FormGroup>
+                                    <FormControl type="text" placeholder="miasto" value={this.state.city}
+                                                 onChange={this.handleCityInputChange}/>
+                                </FormGroup>
+
+                                <FormGroup  controlId="formControlsSelect">
+                                    <FormControl onChange={this.handleGenderInputChange} componentClass="select" placeholder="wybierz płeć">
+                                        <option value="">wybierz płeć...</option>
+                                        <option value={"mężczyzna"}>mężczyzna</option>
+                                        <option value={"kobieta"}>kobieta</option>
+                                    </FormControl>
+                                </FormGroup>
+
+                                <Button bsStyle="primary" style={{width: 100}} onClick={this.handleAddUser}>Zapisz
+                                </Button>
+                            </form>
+                            </Col>
+                    </Row>
+                </Grid>
+
+
 
             </div>
         )

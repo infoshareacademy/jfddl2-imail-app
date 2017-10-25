@@ -82,7 +82,7 @@ class AddForm extends React.Component {
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
             }}>
-                <h2>Dodaj do listy</h2>
+                <h2>Dodaj do listy kontaktów</h2>
                 <br/>
 
                 <Grid>

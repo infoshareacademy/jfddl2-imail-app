@@ -14,7 +14,7 @@ import {
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import { toggleGroupToUser } from '../../state/contacts'
+import {toggleGroupToUser} from '../../state/contacts'
 
 import {database} from '../../firebase'
 
@@ -87,11 +87,11 @@ class SearchForm extends React.Component {
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
             }}>
-                <h2>Wyszukaj</h2>
+                <h2>Wyszukaj kontakt</h2>
                 <br/>
                 <form>
                     <InputGroup>
-                        <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler}
+                        <FormControl placeholder="Wpisz kontakt..." onChange={this.searchHandler}
                                      value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button bsStyle="primary">
@@ -169,7 +169,7 @@ class SearchForm extends React.Component {
                                                         return <MenuItem
                                                             eventKey={groupId}
                                                         >
-                                                            {groups && groups.includes(groupId) ? 'X ' : ''}
+                                                            {groups && groups.includes(groupId) ? '✓ ' : ''}
                                                             {groupName}
                                                         </MenuItem>
                                                     })}
@@ -185,7 +185,7 @@ class SearchForm extends React.Component {
                             </tbody>
 
                         </Table> :
-                        <p>Ładowanie</p>
+                        <p>Wczytywanie bazy...</p>
                 }
 
             </div>
@@ -201,7 +201,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    toggleGroup: (userId, groupId) => {dispatch(toggleGroupToUser(userId, groupId))}
+    toggleGroup: (userId, groupId) => {
+        dispatch(toggleGroupToUser(userId, groupId))
+    }
 })
 
 export default connect(

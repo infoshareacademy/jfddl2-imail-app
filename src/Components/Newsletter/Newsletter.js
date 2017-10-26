@@ -15,10 +15,10 @@ class Newsletter extends React.Component {
             },
             body: JSON.stringify({
                 "emails": [this.props.email],
-                "subject": "test",
-                "message": "Pozdrowienia od Andrzeja!",
+                "subject": "Pozdrowienia od instantMail!",
+                "message": "Witaj w naszej aplikacji, jak widzisz wszytko działa! Do zobaczenia:D",
                 "from": "instantmail@imail.com",
-                "fromName": "iMailApp"
+                "fromName": "instantMailApp"
             })
         }).then(response => response.json())
             .then(console.log)

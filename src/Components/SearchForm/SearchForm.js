@@ -131,6 +131,7 @@ class SearchForm extends React.Component {
                                 <th>Płeć</th>
                                 <th>Dodaj grupę</th>
                                 <th>Szczegóły</th>
+                                <th>Usuń</th>
 
                             </tr>
                             </thead>
@@ -163,7 +164,7 @@ class SearchForm extends React.Component {
                                             <td>
                                                 <DropdownButton onSelect={(event) => {
                                                     this.props.toggleGroup(id, event)
-                                                }} bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
+                                                }} bsStyle="primary" title="Wybierz" id="bg-vertical-dropdown-1">
                                                     {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
                                                         let groupName = keyValueArr[1]
@@ -179,9 +180,11 @@ class SearchForm extends React.Component {
                                             <td>
                                                 <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
+
+                                            <td><Button bsStyle="danger"><Glyphicon glyph="minus-sign"/> Usuń</Button></td>
+
                                             <td>
                                                 <Newsletter email={email}/>
-
                                             </td>
                                         </tr>
                                     )

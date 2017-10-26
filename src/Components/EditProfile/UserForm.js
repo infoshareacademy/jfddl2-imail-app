@@ -219,7 +219,7 @@ class UserForm extends React.Component {
                     <Grid>
                         <Row className="show-grid">
                             <Col md={5}>
-
+                                <form onSubmit={this.handleSaveFV}>
                                 <FormGroup controlId={'formControlsText'}>
                                     <ControlLabel>{'Imię i Nazwisko:'}</ControlLabel>
 
@@ -235,6 +235,11 @@ class UserForm extends React.Component {
                                                  onChange={this.handleCompanyName}
                                                  value={this.state.displayCompanyName}/>
                                 </FormGroup>
+                                    <Button bsStyle={"primary"} type="submit">
+                                        Zapisz zmiany
+                                    </Button>
+
+                                </form>
                             </Col>
                             <Col md={5}>
                                 <form onSubmit={this.handleSaveFV}>
@@ -255,13 +260,9 @@ class UserForm extends React.Component {
                                         <Checkbox onChange={(e) => {
                                             this.setState({onlyRecipe: e.target.checked})
                                         }}>
-                                            Checkbox
+                                            Chcę Paragon!
                                         </Checkbox>
                                     </FormGroup>
-                                    <Button bsStyle={"primary"} type="submit">
-                                        Zapisz zmiany
-                                    </Button>
-
                                 </form>
                             </Col>
                         </Row>

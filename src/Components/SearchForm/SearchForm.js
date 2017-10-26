@@ -1,4 +1,4 @@
-import React from 'react'
+    import React from 'react'
 import {
     ToggleButtonGroup,
     DropdownButton,
@@ -17,6 +17,7 @@ import {connect} from 'react-redux'
 import {toggleGroupToUser} from '../../state/contacts'
 
 import {database} from '../../firebase'
+    import Newsletter from "../Newsletter/Newsletter";
 
 const filters = {
     gender_male: gender => gender.male === 'Mężczyzna',
@@ -179,7 +180,12 @@ class SearchForm extends React.Component {
                                             <td>
                                                 <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
+
                                             <td><Button bsStyle="danger"><Glyphicon glyph="minus-sign"/> Usuń</Button></td>
+
+                                            <td>
+                                                <Newsletter email={email}/>
+                                            </td>
                                         </tr>
                                     )
                                 )

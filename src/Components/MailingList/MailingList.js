@@ -2,18 +2,18 @@ import React from 'react'
 
 import {
     Button,
-    Form,
     Grid,
     Row,
     Col,
     FormControl,
-    MenuItem,
     ControlLabel,
     Glyphicon,
     FormGroup
 
 
 } from 'react-bootstrap'
+
+import {connect} from 'react-redux'
 
 
 class MailingList extends React.Component {
@@ -45,7 +45,7 @@ class MailingList extends React.Component {
                         <Col md={6} mdPull={6}>
                             <ControlLabel>Grupa wysyłkowa</ControlLabel>
                             <FormControl style={{width: 400}}
-                                         onChange={this.handleGenderInputChange}
+                                         onChange={this.handleGroupInputChange}
                                          componentClass="select"
                                          placeholder="wybierz grupę">
                                 <option value="">wybierz...</option>
@@ -69,4 +69,6 @@ class MailingList extends React.Component {
 }
 
 
-export default MailingList
+export default connect(
+    // mapStateToProps
+)(MailingList)

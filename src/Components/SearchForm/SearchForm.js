@@ -14,6 +14,8 @@ import {
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import {toggleGroupToUser} from '../../state/contacts'
+
 import {database} from '../../firebase'
 
 const filters = {
@@ -45,10 +47,6 @@ class SearchForm extends React.Component {
         groups: ''
     }
 
-    addToGroup = (groupId, userId) => {
-        console.log(groupId, userId)
-
-    }
 
     searchHandler = (event) => {
         this.setState({
@@ -89,11 +87,11 @@ class SearchForm extends React.Component {
                 padding: 15,
                 boxShadow: "0px 0px 10px lightgrey"
             }}>
-                <h2>Wyszukaj</h2>
+                <h2>Wyszukaj kontakt</h2>
                 <br/>
                 <form>
                     <InputGroup>
-                        <FormControl placeholder="Wyszukaj pozycję..." onChange={this.searchHandler}
+                        <FormControl placeholder="Wpisz kontakt..." onChange={this.searchHandler}
                                      value={this.state.searchInput}/>
                         <InputGroup.Button>
                             <Button bsStyle="primary">
@@ -130,8 +128,6 @@ class SearchForm extends React.Component {
                                 <th>Adres e-mail</th>
                                 <th>Miasto</th>
                                 <th>Płeć</th>
-                                {/*<th>Zdjęcie</th>*/}
-                                <th>Grupa</th>
                                 <th>Dodaj grupę</th>
                                 <th>Szczegóły</th>
 
@@ -146,7 +142,7 @@ class SearchForm extends React.Component {
                                         || user.email.includes(this.state.searchInput)
                                         || user.city.includes(this.state.searchInput)
                                 }).map(
-                                    ({id, fullname, city, gender, email, avatar, group}, index) => (
+                                    ({id, fullname, city, gender, email, avatar, groups}, index) => (
                                         <tr key={id}>
                                             <td>
                                                 {id}
@@ -164,16 +160,18 @@ class SearchForm extends React.Component {
                                                 {gender}
                                             </td>
                                             <td>
-                                                {/*{groups}*/}
-                                            </td>
-                                            <td>
                                                 <DropdownButton onSelect={(event) => {
-                                                    this.addToGroup(event, id)
+                                                    this.props.toggleGroup(id, event)
                                                 }} bsStyle="primary" title="Dodaj do grupy" id="bg-vertical-dropdown-1">
                                                     {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
                                                         let groupName = keyValueArr[1]
-                                                        return <MenuItem eventKey={groupId}>{groupName}</MenuItem>
+                                                        return <MenuItem
+                                                            eventKey={groupId}
+                                                        >
+                                                            {groups && groups.includes(groupId) ? '✓ ' : ''}
+                                                            {groupName}
+                                                        </MenuItem>
                                                     })}
                                                 </DropdownButton>
                                             </td>
@@ -187,7 +185,7 @@ class SearchForm extends React.Component {
                             </tbody>
 
                         </Table> :
-                        <p>Ładowanie</p>
+                        <p>Wczytywanie bazy...</p>
                 }
 
             </div>
@@ -202,6 +200,13 @@ const mapStateToProps = state => ({
     groups: state.groups.groupsList
 })
 
+const mapDispatchToProps = dispatch => ({
+    toggleGroup: (userId, groupId) => {
+        dispatch(toggleGroupToUser(userId, groupId))
+    }
+})
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(SearchForm)

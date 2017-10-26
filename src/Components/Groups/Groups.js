@@ -12,7 +12,7 @@ import {
 
 import {connect} from 'react-redux'
 
-import {addGroup} from '../../state/groups'
+import {addGroup, delGroup} from '../../state/groups'
 
 class Groups extends React.Component {
 
@@ -37,10 +37,8 @@ class Groups extends React.Component {
     }
 
 
-    handleDeleteGroup = (event) => {
-        event.preventDefault();
-        this.props.deleteGroup(this.state.deleteGroup)
-
+    handleDeleteGroup = (groupId) => {
+        this.props.delGroup(groupId);
     }
 
     render() {
@@ -81,10 +79,10 @@ class Groups extends React.Component {
 
 
                     <tbody>
-                    {Object.values(this.props.groups).map((group, index) => {
+                    {Object.entries(this.props.groups || {}).map((group, index) => {
                         return <tr key={index}>
-                            <td>{group}</td>
-                            <td><Button bsStyle="danger" onClick={this.handleDeleteGroup}><Glyphicon glyph="minus-sign"/> Usuń
+                            <td>{group[1]}</td>
+                            <td><Button bsStyle="danger" onClick={()=>{this.handleDeleteGroup(group[0])}}><Glyphicon glyph="minus-sign"/> Usuń
                                 grupę</Button></td>
                         </tr>
                     })}
@@ -99,8 +97,11 @@ class Groups extends React.Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    addGroup: name => dispatch(addGroup(name))
+    addGroup: name => dispatch(addGroup(name)),
+    delGroup: id => dispatch(delGroup(id))
 })
+
+
 
 const mapStateToProps = state => ({
     groups: state.groups.groupsList

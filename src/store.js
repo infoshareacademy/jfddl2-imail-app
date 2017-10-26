@@ -7,7 +7,7 @@ import {
 import thunk from 'redux-thunk'
 
 import auth, { init as initAuth } from './state/auth'
-import contacts, { init as initContactsSync } from './state/contacts'
+import contacts, {init as initContactsSync } from './state/contacts'
 import groups, { init as initGroupsSync } from './state/groups'
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {auth, storage} from '../../firebase'
+import {auth, storage, database} from '../../firebase'
 import {
     Button,
     ControlLabel,
@@ -8,9 +8,10 @@ import {
     Grid,
     Row,
     Col,
-    ButtonGroup
+    Checkbox
 } from 'react-bootstrap'
 import UploadProfilePhoto from "../UploadProfilePhoto/UploadprofilePhoto";
+
 
 class UserForm extends React.Component {
     state = {
@@ -21,18 +22,25 @@ class UserForm extends React.Component {
         displayNip: '',
         displayCompanyName: '',
         displayAddress: '',
-        displayNameFV: ''
+        displayNameFV: '',
+        onlyRecipe: false
+    }
+
+    componentWillMount(){
+        let id = this.props.user.uid
+        database().ref(`user/${id}`).once('value')
+            .then((snapshot)=>{
+            this.setState({
+                displayNip: snapshot.val().displayNip,
+                displayCompanyName: snapshot.val().displayCompanyName,
+                displayAddress: snapshot.val().displayAddress,
+                displayNameFV: snapshot.val().displayName
+            })
+            })
     }
 
     handleSave = (event) => {
         event.preventDefault()
-        // this.setState({
-        //     displayName: this.props.user.displayName,
-        //     email: this.props.user.email,
-        //     password: this.props.user.password,
-        //     photoURL: this.props.user.photoURL
-        // })
-        console.log(this.state)
 
         this.props.user.updateProfile({
             displayName: this.state.displayName,
@@ -57,38 +65,17 @@ class UserForm extends React.Component {
 
     handleSaveFV = (event) => {
         event.preventDefault()
-        // this.setState({
-        //     displayName: this.props.user.displayName,
-        //     email: this.props.user.email,
-        //     password: this.props.user.password,
-        //     photoURL: this.props.user.photoURL
-        // })
-        console.log(this.state)
 
-        this.props.user.updateProfile({
+        let id = this.props.user.uid
+
+
+        database().ref(`user/${id}`).set({
             displayName: this.state.displayNameFV,
+            displayNip: this.state.displayNip,
+            displayCompanyName: this.state.displayCompanyName,
+            displayAddress: this.state.displayAddress
         }).then(() => {
             console.log('user name updated')
-        })
-
-        this.props.user.updateProfile(
-            this.state.displayNip
-        ).then(() => {
-            console.log('user NIP updated')
-        }).catch((error) => {
-            if (error.code === "auth/requires-recent-login") alert('Wymaga niedawnego zalogowania!')
-        })
-
-        this.props.user.updateProfile(
-            this.state.displayCompanyName
-        ).then(() => {
-            console.log('user company name updated')
-        })
-
-        this.props.user.updateProfile(
-            this.state.displayAddress
-        ).then(() => {
-            console.log('user address updated')
         })
     }
 
@@ -110,12 +97,6 @@ class UserForm extends React.Component {
             password: event.target.value
         })
     }
-
-    // handlePhotoChange = (event) => {
-    //     this.setState({
-    //         photoURL: event.target.value
-    //     })
-    // }
 
     handleUploadedPhoto = (photoURL) => {
         this.props.user.updateProfile({
@@ -153,6 +134,8 @@ class UserForm extends React.Component {
     }
 
 
+
+
     render() {
         const user = auth().currentUser;
         return (
@@ -174,14 +157,6 @@ class UserForm extends React.Component {
                                     borderRadius: 20,
                                     boxShadow: "0px 0px 30px lightgrey"
                                 }} src={this.state.photoURL}/>
-
-
-                                {/*<FormGroup controlId={'formControlsAvatar'}>*/}
-                                {/*<ControlLabel>{'Plik:'}</ControlLabel>*/}
-
-                                {/*<FormControl type={'File'}*/}
-                                {/*onChange={this.handlePhotoChange} />*/}
-                                {/*</FormGroup><br/>*/}
                             </Col>
 
                             <Col md={6} mdPull={6}>
@@ -244,7 +219,7 @@ class UserForm extends React.Component {
                     <Grid>
                         <Row className="show-grid">
                             <Col md={5}>
-
+                                <form onSubmit={this.handleSaveFV}>
                                 <FormGroup controlId={'formControlsText'}>
                                     <ControlLabel>{'Imię i Nazwisko:'}</ControlLabel>
 
@@ -260,25 +235,35 @@ class UserForm extends React.Component {
                                                  onChange={this.handleCompanyName}
                                                  value={this.state.displayCompanyName}/>
                                 </FormGroup>
+                                    <Button bsStyle={"primary"} type="submit">
+                                        Zapisz zmiany
+                                    </Button>
+
+                                </form>
                             </Col>
                             <Col md={5}>
                                 <form onSubmit={this.handleSaveFV}>
-                                <FormGroup controlId={'formControlstText'}>
-                                    <ControlLabel>{'NIP:'}</ControlLabel>
-                                    <FormControl type={'text'}
-                                                 onChange={this.handleNip}
-                                                 value={this.state.displayNip}/>
-                                </FormGroup>
+                                    <FormGroup controlId={'formControlstText'}>
+                                        <ControlLabel>{'NIP:'}</ControlLabel>
+                                        <FormControl type={'text'}
+                                                     onChange={this.handleNip}
+                                                     value={this.state.displayNip}/>
+                                    </FormGroup>
 
-                                <FormGroup controlId={'formControlsText'}>
-                                    <ControlLabel>{'Adres:'}</ControlLabel>
-                                    <FormControl type={'text'}
-                                                 onChange={this.handleAddress}
-                                                 value={this.state.displayAddress}/>
-                                </FormGroup>
-                                <Button bsStyle={"primary"} type="submit">
-                                    Zapisz zmiany
-                                </Button></form>
+                                    <FormGroup controlId={'formControlsText'}>
+                                        <ControlLabel>{'Adres:'}</ControlLabel>
+                                        <FormControl type={'text'}
+                                                     onChange={this.handleAddress}
+                                                     value={this.state.displayAddress}/>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Checkbox onChange={(e) => {
+                                            this.setState({onlyRecipe: e.target.checked})
+                                        }}>
+                                            Chcę Paragon!
+                                        </Checkbox>
+                                    </FormGroup>
+                                </form>
                             </Col>
                         </Row>
                     </Grid>

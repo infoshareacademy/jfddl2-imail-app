@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap'
 import { storage } from './firebase'
 
+import ShareLinkForm from './Components/ShareLinkToAddContact/ShareLinkForm'
 import MainView from './Components/MainView/MainView'
 import Added from './Components/Added/Added'
 import AddForm from './Components/AddForm/AddForm'
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Router>
                 <Grid>
                     <MainView/>
+                    <Route path ="/ShareLinkForm" component ={ShareLinkForm}/>
                     <Route path ="/MainView" component ={MainView}/>
                     <Route path ="/Added" component ={Added}/>
                     <Route path ="/AddForm" component ={AddForm}/>

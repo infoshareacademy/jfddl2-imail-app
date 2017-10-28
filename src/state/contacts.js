@@ -17,9 +17,18 @@ export const addNewContact = (newUserData) => (dispatch, getState) => {
         ...newUserData,
         id: nextIndex
     }).then(() => {
-        alert('Dodano Usera!') // @TODO move alert to component by dispatching an action
+        alert('Dodano kontakt!') // @TODO move alert to component by dispatching an action
     })
 }
+
+export const deleteContact = (userId) => (dispatch, getState) => {
+    database().ref(`contacts/${userId}`).set(null)
+        .then(() => {
+            alert('Usunięto kontakt!') // @TODO move alert to component by dispatching an action
+        })
+}
+
+
 
 export const toggleGroupToUser = (userId, groupId) => (dispatch, getState) => {
     let userGroups = getState().contacts.contactsList[userId].groups

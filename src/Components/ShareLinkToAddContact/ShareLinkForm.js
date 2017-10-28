@@ -40,7 +40,7 @@ class ShareLinkForm extends React.Component {
         }
 
         let newUserData = {
-            avatar: "",
+            avatar: "https://llw.azureedge.net/2017-07-04T13.10.30.308Z/images/avatar-default.svg",
             city: "",
             email: this.state.email,
             fullname: this.state.name,

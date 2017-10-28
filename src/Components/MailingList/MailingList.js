@@ -61,7 +61,7 @@ class MailingList extends React.Component {
             return
         }
 
-        sendMails(recipients, "chomamateusz@gmail.com", "zupa")
+        sendMails(recipients, this.state.sender || 'instantmail@instantmail.pl', this.state.message)
     }
 
     render() {

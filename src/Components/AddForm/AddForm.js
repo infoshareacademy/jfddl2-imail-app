@@ -13,44 +13,26 @@ import {
 // import styles from '../../style.css'
 
 class AddForm extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            name: '',
-            email: '',
-            gender: '',
-            city: '',
-            addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
-        }
-    }
-
-
     handleNameInputChange = (event) => {
         this.setState({
             name: event.target.value
         });
     }
-
     handleEmailInputChange = (event) => {
         this.setState({
             email: event.target.value
         });
     }
-
     handleCityInputChange = (event) => {
         this.setState({
             city: event.target.value
         });
     }
-
     handleGenderInputChange = (event) => {
         this.setState({
             gender: event.target.value
         });
     }
-
-
     handleAddUser = (event) => {
         event.preventDefault();
         console.log(this.state.addedUsers);
@@ -74,6 +56,18 @@ class AddForm extends React.Component {
         });
     }
 
+    constructor() {
+        super();
+
+        this.state = {
+            name: '',
+            email: '',
+            gender: '',
+            city: '',
+            addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
+        }
+    }
+
     render() {
         return (
             <div style={{
@@ -88,9 +82,10 @@ class AddForm extends React.Component {
                 <Grid>
                     <Row className="show-grid">
                         <Col md={6} mdPush={6}>
-                            <div style={{width:"85%"}}>
-                                <Panel style={{color:"grey", fontStyle:"italic"}} header={"Pomoc"}>
-                                    Dodaj użytkowników do swojej bazy, bedzięsz mógł ich wykorzystać do stworzenia swojej bazy mailingowej.
+                            <div style={{width: "85%"}}>
+                                <Panel style={{color: "grey", fontStyle: "italic"}} header={"Pomoc"}>
+                                    Dodaj użytkowników do swojej bazy, bedzięsz mógł ich wykorzystać do stworzenia
+                                    swojej bazy mailingowej.
                                     Pamiętaj im więcej tym lepiej...
                                     <br/><br/>
                                     W niedługim czasie zamierzamy wprowadzić importowanie użytkowników z pliku.
@@ -115,8 +110,9 @@ class AddForm extends React.Component {
                                                  onChange={this.handleCityInputChange}/>
                                 </FormGroup>
 
-                                <FormGroup  controlId="formControlsSelect">
-                                    <FormControl onChange={this.handleGenderInputChange} componentClass="select" placeholder="wybierz płeć">
+                                <FormGroup controlId="formControlsSelect">
+                                    <FormControl onChange={this.handleGenderInputChange} componentClass="select"
+                                                 placeholder="wybierz płeć">
                                         <option value="">wybierz płeć...</option>
                                         <option value={"mężczyzna"}>mężczyzna</option>
                                         <option value={"kobieta"}>kobieta</option>
@@ -126,91 +122,15 @@ class AddForm extends React.Component {
                                 <Button bsStyle="primary" style={{width: 100}} onClick={this.handleAddUser}>Zapisz
                                 </Button>
                             </form>
-                            </Col>
+                        </Col>
                     </Row>
                 </Grid>
-
 
 
             </div>
         )
     }
 
-  }
-
-  handleNameInputChange = (event) => {
-    this.setState({
-      name: event.target.value
-    });
-  }
-
-  handleEmailInputChange = (event) => {
-    this.setState({
-      email: event.target.value
-    });
-  }
-
-  handleCityInputChange = (event) => {
-    this.setState({
-      city: event.target.value
-    });
-  }
-
-  handleGenderInputChange = (event) => {
-    this.setState({
-      gender: event.target.value
-    });
-  }
-
-  render() {
-    return (
-        <div>
-          <h1>Dodaj do listy</h1>
-          <form
-              onSubmit={this.handleSubmit}
-          >
-            imię i nazwisko <input
-              type="text"
-              value={this.state.name}
-              onChange={this.handleNameInputChange}
-          />
-            <br/>
-            adres e-mail <input
-              type="text"
-              value={this.state.email}
-              onChange={this.handleEmailInputChange}
-          /><br/>
-            miasto <input
-              type="text"
-              value={this.state.city}
-              onChange={this.handleCityInputChange}
-          /><br/>
-            mężczyzna <input
-              type="radio"
-              name="gender"
-              value="mężczyzna"
-              onChange={this.handleGenderInputChange}
-          />
-            kobieta <input
-              type="radio"
-              name="gender"
-              value="kobieta"
-              onChange={this.handleGenderInputChange}
-          />
-            <br/>
-            <button onClick={this.handleAddUser}>
-              Zapisz
-            </button>
-          </form>
-
-          {/*<ul>*/}
-          {/*{this.state.addedUsers.map((user, index) =>*/}
-          {/*<li key={index}>{user.fullname}</li>*/}
-          {/*)}*/}
-          {/*</ul>*/}
-        </div>
-    )
-  }
 }
 
 export default AddForm

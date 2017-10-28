@@ -6,15 +6,17 @@ import {
     Button
 } from 'react-bootstrap'
 
-class ShareLinkForm extends React.Component {
-    constructor() {
-        super();
+import { connect } from 'react-redux'
 
-        this.state = {
-            name: '',
-            email: '',
-            addedUsers: JSON.parse(localStorage.getItem('ShareLinkClient')) || []
-        }
+import {addNewContact} from '../../state/contacts'
+
+const GROUP_ID = '-KxJIMD8FdeRwMqU9EOa'
+
+class ShareLinkForm extends React.Component {
+
+    state = {
+        name: '',
+        email: ''
     }
 
     handleNameInputChange = (event) => {
@@ -22,19 +24,28 @@ class ShareLinkForm extends React.Component {
             name: event.target.value
         });
     }
+
     handleEmailInputChange = (event) => {
         this.setState({
             email: event.target.value
         });
     }
+
     handleAddUser = (event) => {
         event.preventDefault();
-        console.log(this.state.addedUsers);
-        let newUser = {
+
+        let newUserData = {
+            avatar: "",
+            city: "",
+            email: this.state.email,
             fullname: this.state.name,
-            email: this.state.email
+            gender: "",
+            groups: [GROUP_ID],
+            id: ''
         };
-}
+
+        this.props.addNewContact(newUserData)
+    }
 
     render() {
         return (
@@ -58,8 +69,15 @@ class ShareLinkForm extends React.Component {
                     </button>
                 </form>
             </div>
-                )
-}
+        )
+    }
 }
 
-export default ShareLinkForm
+const mapDispatchToProps = dispatch => ({
+    addNewContact: newUserData => dispatch(addNewContact(newUserData))
+})
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(ShareLinkForm)

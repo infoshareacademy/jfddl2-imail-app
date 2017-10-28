@@ -24,7 +24,8 @@ class MailingList extends React.Component {
     state = {
         selectedGroup: ALL,
         message: '',
-        sender: ''
+        sender: '',
+        subject: ''
     }
 
     handleGroupInputChange = (event) => {
@@ -45,6 +46,12 @@ class MailingList extends React.Component {
         })
     }
 
+    handleSubject = (event) => {
+        this.setState({
+            subject: event.target.value
+        })
+    }
+
     handleSendButtonClick = () => {
         const recipients = this.props.contacts.filter((contact)=>{
             if(this.state.selectedGroup === ALL)
@@ -61,7 +68,7 @@ class MailingList extends React.Component {
             return
         }
 
-        sendMails(recipients, this.state.sender || 'instantmail@instantmail.pl', this.state.message)
+        sendMails(recipients, this.state.sender || 'instantmail@instantmail.pl', this.state.message, this.state.subject)
     }
 
     render() {
@@ -78,7 +85,7 @@ class MailingList extends React.Component {
                 <br/>
                 <Grid>
                     <Row className="show-grid">
-                        <Col md={6} mdPush={6}>
+                        <Col md={3}>
                             <ControlLabel>Adres nadawcy</ControlLabel>
                             <FormControl style={{width: 400}}
                                          type="email"
@@ -89,7 +96,16 @@ class MailingList extends React.Component {
                                 // value={this.state.newGroupName}
                             />
                         </Col>
-                        <Col md={6} mdPull={6}>
+                        <Col md={3}>
+                            <ControlLabel>Temat</ControlLabel>
+                            <FormControl style={{width: 400}}
+                                         type="subject"
+                                         value={this.state.subject}
+                                         onChange={this.handleSubject}
+                                         placeholder="Pozdrowienia od instantMail"
+                            />
+                        </Col>
+                        <Col md={3}>
                             <ControlLabel>Grupa wysyłkowa</ControlLabel>
                             <FormControl style={{width: 400}}
                                          onChange={this.handleGroupInputChange}

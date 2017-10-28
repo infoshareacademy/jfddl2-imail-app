@@ -34,6 +34,11 @@ class ShareLinkForm extends React.Component {
     handleAddUser = (event) => {
         event.preventDefault();
 
+        if(!this.validateEmail(this.state.email)){
+            alert('To nie jest poprawny e-mail!')
+            return
+        }
+
         let newUserData = {
             avatar: "",
             city: "",
@@ -47,9 +52,22 @@ class ShareLinkForm extends React.Component {
         this.props.addNewContact(newUserData)
     }
 
+    validateEmail = (email) => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
     render() {
         return (
-            <div>
+            <div style={{
+                border: "1px solid lightgrey",
+                width: 440,
+                borderRadius: 20,
+                padding: 15,
+                boxShadow: "0px 0px 10px lightgrey",
+                margin: "0 auto",
+                marginTop: "6%"
+            }}>
                 <h1>Sprawdź jak działamy</h1>
                 <form
                     onSubmit={this.handleSubmit}

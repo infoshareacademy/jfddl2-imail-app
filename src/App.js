@@ -7,6 +7,7 @@ import {
 import {
     Grid
 } from 'react-bootstrap'
+import { storage } from './firebase'
 
 import ShareLinkForm from './Components/ShareLinkToAddContact/ShareLinkForm'
 import MainView from './Components/MainView/MainView'
@@ -19,6 +20,7 @@ import SearchForm from "./Components/SearchForm/SearchForm"
 import Favourite from "./Components/Favourite/Favourite"
 import ShareButton from "./Components/ShareButton/ShareButton"
 import EditProfile from "./Components/EditProfile"
+import MailingList from "./Components/MailingList"
 
 
 class App extends React.Component {
@@ -38,6 +40,7 @@ class App extends React.Component {
                     <Route path ="/Favourite" component ={Favourite}/>
                     <Route path ="/ShareButton" component ={ShareButton}/>
                     <Route path ="/EditProfile" component ={EditProfile}/>
+                    <Route path ="/MailingList" component ={MailingList}/>
                 </Grid>
             </Router>
         )

@@ -10,6 +10,7 @@ export const init = () => dispatch => {
     )
 }
 
+
 export const addNewContact = (newUserData) => (dispatch, getState) => {
     const nextIndex = getState().contacts.contactsList.length
     database().ref(`contacts/${nextIndex}`).set({
@@ -18,6 +19,14 @@ export const addNewContact = (newUserData) => (dispatch, getState) => {
     }).then(()=>{
         alert('Dodano Usera!') // @TODO move alert to component by dispatching an action
     })
+=======
+
+export const toggleGroupToUser = (userId, groupId) => (dispatch, getState) => {
+    let userGroups = getState().contacts.contactsList[userId].groups
+    if(!userGroups.includes(groupId))
+        database().ref(`contacts/${userId}/groups/${userGroups.length}`).set(groupId)
+    else
+        database().ref(`contacts/${userId}/groups/${userGroups.indexOf(groupId)}`).remove()
 }
 
 const setContacts = contacts => ({

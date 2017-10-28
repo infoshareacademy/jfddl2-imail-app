@@ -4,44 +4,47 @@ import {
   Navbar,
   Nav,
   NavItem,
-  Button,
 } from 'react-bootstrap'
-import {
-  Link
-} from 'react-router-dom'
+
+import {withRouter} from 'react-router-dom'
 import {
   LinkContainer
 } from 'react-router-bootstrap'
-import ListingBase from "../ListingBase/ListingBase";
+
 import { signOut } from '../../state/auth'
 
-// import logo from './logo.svg'
+
 import ShareButton from "../ShareButton/ShareButton"
 
 const MainMenu = props => (
-    <Navbar>
+    <Navbar style={{BorderRadiusBottom:20}}>
       <Navbar.Header>
         <Navbar.Brand>
-          {/*<Link to="/"><img src={logo} style={{ height: 20 }} alt="sth"/></Link>*/}
+            {/*<Link to="/"><img src={logo} style={{ height: 20 }} alt="sth"/></Link>*/}
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
         <LinkContainer to="/AddForm">
-          <NavItem>
-            Dodaj
-          </NavItem>
+          <NavItem>Dodaj</NavItem>
         </LinkContainer>
-
         <LinkContainer to="/SearchForm">
           <NavItem>Wyszukaj</NavItem>
         </LinkContainer>
         <LinkContainer to="/Groups">
           <NavItem>Grupy</NavItem>
         </LinkContainer>
+        <LinkContainer to="/MailingList">
+          <NavItem>Lista wysyłkowa</NavItem>
+        </LinkContainer>
         <LinkContainer to="/Added">
           <NavItem>Ulubione</NavItem>
         </LinkContainer>
+        <LinkContainer to="/EditProfile">
+          <NavItem>Mój Profil</NavItem>
+        </LinkContainer>
         <NavItem onClick={props.signOutHelper}>Wyloguj</NavItem>
+      </Nav>
+      <Nav pullRight>
         <NavItem>
           <ShareButton/>
         </NavItem>
@@ -59,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(
+export default withRouter(connect(
     null,
     mapDispatchToProps
-)(MainMenu)
+)(MainMenu))

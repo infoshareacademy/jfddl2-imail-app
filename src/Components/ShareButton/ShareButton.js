@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  Grid, Row, Col
+  Row, Col
 } from 'react-bootstrap'
 import {
   ShareButtons,
@@ -26,35 +26,37 @@ class ShareButton extends Component {
     return (
         <div className="Demo__container">
 
-          {/*<Grid>*/}
             <Row>
-              <Col xs={6}>
+              <Col xs={4}>
                 <div className="Demo__some-network">
                   <FacebookShareButton
                       url={shareUrl}
                       quote={title}
                       className="Demo__some-network__share-button">
                     <FacebookIcon
-                        size={32}
+                        size={30}
                         round/>
                   </FacebookShareButton>
 
                 </div>
               </Col>
-              <Col xs={6}>
+              <Col xs={4}>
                 <div className="Demo__some-network">
                   <TwitterShareButton
                       url={shareUrl}
                       title={title}
                       className="Demo__some-network__share-button">
                     <TwitterIcon
-                        size={32}
+                        size={30}
                         round/>
                   </TwitterShareButton>
                 </div>
               </Col>
+              <Col xs={4}>
+                <div className="Demo__some-network">
+                </div>
+              </Col>
             </Row>
-          {/*</Grid>*/}
         </div>
     );
   }

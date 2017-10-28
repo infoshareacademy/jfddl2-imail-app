@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
     ToggleButtonGroup,
     DropdownButton,
@@ -11,32 +12,11 @@ import {
     ButtonToolbar,
     Button
 } from 'react-bootstrap'
+
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 
-import {toggleGroupToUser} from '../../state/contacts'
 
-import {database} from '../../firebase'
-import Newsletter from "../Newsletter/Newsletter";
-
-const filters = {
-    gender_male: gender => gender.male === 'Mężczyzna',
-    gender_female: gender => gender.female === 'Kobieta'
-}
-
-const filterGroups = [
-    {
-        label: 'Mężczyzna',
-        name: 'gender_male'
-    },
-
-    {
-        label: 'Kobieta',
-        name: 'gender_female'
-    }
-]
-
-class SearchForm extends React.Component {
+class GroupList extends React.Component {
 
     state = {
         users: [],
@@ -183,10 +163,6 @@ class SearchForm extends React.Component {
 
                                             <td><Button bsStyle="danger"><Glyphicon glyph="minus-sign"/> Usuń</Button>
                                             </td>
-
-                                            <td>
-                                                <Newsletter email={email}/>
-                                            </td>
                                         </tr>
                                     )
                                 )
@@ -204,18 +180,4 @@ class SearchForm extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-    contacts: state.contacts.contactsList,
-    groups: state.groups.groupsList
-})
-
-const mapDispatchToProps = dispatch => ({
-    toggleGroup: (userId, groupId) => {
-        dispatch(toggleGroupToUser(userId, groupId))
-    }
-})
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SearchForm)
+export default GroupList

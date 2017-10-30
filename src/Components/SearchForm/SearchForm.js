@@ -132,6 +132,7 @@ class SearchForm extends React.Component {
                                 <th>Dodaj grupę</th>
                                 <th>Szczegóły</th>
                                 <th>Usuń</th>
+                                <th>Wyślij e-mail</th>
 
                             </tr>
                             </thead>

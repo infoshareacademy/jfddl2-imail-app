@@ -73,7 +73,6 @@ class Groups extends React.Component {
                     <thead>
                     <tr>
                         <th>Nazwa grupy</th>
-                        <th style={{width: 110}}>Zobacz grupę</th>
                         <th style={{width: 110}}>Usuń grupę</th>
                     </tr>
                     </thead>
@@ -83,7 +82,6 @@ class Groups extends React.Component {
                     {Object.entries(this.props.groups || {}).map((group, index) => {
                         return <tr key={index}>
                             <td>{group[1]}</td>
-                            <td><Button>Zobacz</Button></td>
                             <td><Button bsStyle="danger" onClick={()=>{this.handleDeleteGroup(group[0])}}><Glyphicon glyph="minus-sign"/> Usuń</Button></td>
                         </tr>
                     })}

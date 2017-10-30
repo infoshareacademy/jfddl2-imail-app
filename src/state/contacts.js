@@ -31,7 +31,7 @@ export const deleteContact = (userId) => (dispatch, getState) => {
 
 
 export const toggleGroupToUser = (userId, groupId) => (dispatch, getState) => {
-    let userGroups = getState().contacts.contactsList[userId].groups
+    let userGroups = getState().contacts.contactsList[userId].groups || []
     if (!userGroups.includes(groupId))
         database().ref(`contacts/${userId}/groups/${userGroups.length}`).set(groupId)
     else
@@ -44,7 +44,7 @@ const setContacts = contacts => ({
 })
 
 const initialState = {
-    contactsList: null
+    contactsList: []
 }
 
 export default (state = initialState, action) => {

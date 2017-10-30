@@ -1,5 +1,9 @@
 import React from 'react'
 
+import {Button} from 'react-bootstrap'
+
+import sendMails from '../../sendMails'
+
 class Newsletter extends React.Component {
 
     state = {
@@ -7,31 +11,21 @@ class Newsletter extends React.Component {
     }
 
     handleEmailButton = (event) => {
-        fetch("https://tranquil-thicket-80023.herokuapp.com", {
-            method: "POST",
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "emails": [this.props.email],
-                "subject": "Pozdrowienia od instantMail!",
-                "message": "Witaj w naszej aplikacji, jak widzisz wszytko działa! Do zobaczenia:D",
-                "from": "instantmail@imail.com",
-                "fromName": "instantMailApp"
-            })
-        }).then(response => response.json())
-            .then(console.log)
+        let subject = prompt('Wpisz temat')
+        let message = prompt('Wpisz wiadomość')
+
+        if (message && subject)
+            sendMails([this.props.email], "instantmail@imail.com", message, subject)
     }
-        render()
-        {
-            return (
-                <button onClick={this.handleEmailButton}>
-                    Wyślij e-mail
-                </button>
-            )
-        }
+
+    render() {
+        return (
+            <Button bsStyle="success" onClick={this.handleEmailButton}>
+                Wyślij e-mail
+            </Button>
+        )
     }
+}
 
 
 export default Newsletter

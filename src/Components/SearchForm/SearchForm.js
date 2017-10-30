@@ -14,7 +14,7 @@ import {
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {toggleGroupToUser} from '../../state/contacts'
+import {deleteContact, toggleGroupToUser} from '../../state/contacts'
 
 import {database} from '../../firebase'
 import Newsletter from "../Newsletter/Newsletter";
@@ -181,7 +181,8 @@ class SearchForm extends React.Component {
                                                 <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
                                             </td>
 
-                                            <td><Button bsStyle="danger"><Glyphicon glyph="minus-sign"/> Usuń</Button>
+                                            <td><Button onClick={()=>this.props.deleteContact(id)} bsStyle="danger"><Glyphicon
+                                                glyph="minus-sign"/> Usuń</Button>
                                             </td>
 
                                             <td>
@@ -212,7 +213,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     toggleGroup: (userId, groupId) => {
         dispatch(toggleGroupToUser(userId, groupId))
-    }
+    },
+    deleteContact: (userId) => dispatch(deleteContact(userId))
 })
 
 export default connect(

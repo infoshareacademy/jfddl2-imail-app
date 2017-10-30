@@ -9,10 +9,27 @@ import {
     Row,
     Col
 } from 'react-bootstrap'
+
+import {connect} from 'react-redux'
+
+import {addNewContact} from '../../state/contacts'
+
 // import CSSModules from 'react-css-modules';
 // import styles from '../../style.css'
 
 class AddForm extends React.Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            name: '',
+            email: '',
+            gender: '',
+            city: ''
+        }
+    }
+
     handleNameInputChange = (event) => {
         this.setState({
             name: event.target.value
@@ -35,8 +52,13 @@ class AddForm extends React.Component {
     }
     handleAddUser = (event) => {
         event.preventDefault();
-        console.log(this.state.addedUsers);
-        let newUser = {
+
+        if (!this.validateEmail(this.state.email)) {
+            alert('To nie jest poprawny e-mail!')
+            return
+        }
+
+        let newUserData = {
             id: Date.now(),
             avatar: "https://llw.azureedge.net/2017-07-04T13.10.30.308Z/images/avatar-default.svg",
             fullname: this.state.name,
@@ -45,27 +67,12 @@ class AddForm extends React.Component {
             city: this.state.city
         };
 
-        this.setState({
-            addedUsers: this.state.addedUsers.concat(newUser),
-            name: '',
-            email: '',
-            gender: '',
-            city: ''
-        }, () => {
-            localStorage.setItem('addedUsers', JSON.stringify(this.state.addedUsers));
-        });
+        this.props.addNewContact(newUserData)
+
     }
-
-    constructor() {
-        super();
-
-        this.state = {
-            name: '',
-            email: '',
-            gender: '',
-            city: '',
-            addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || []
-        }
+    validateEmail = (email) => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
 
     render() {
@@ -133,5 +140,12 @@ class AddForm extends React.Component {
 
 }
 
-export default AddForm
+const mapDispatchToProps = dispatch => ({
+    addNewContact: newUserData => dispatch(addNewContact(newUserData))
+})
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(AddForm)
 // export default CSSModules(AddForm, styles);

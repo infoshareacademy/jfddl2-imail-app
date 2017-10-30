@@ -1,4 +1,4 @@
-const sendMails = (recipientsEmails, sender, message) => {
+const sendMails = (recipientsEmails, sender, message, subject) => {
 
     // @TODO validate parametest
 
@@ -10,7 +10,7 @@ const sendMails = (recipientsEmails, sender, message) => {
         },
         body: JSON.stringify({
             "emails": recipientsEmails,
-            "subject": "SUBJECT @TODO",
+            "subject": subject,
             "message": message,
             "from": sender,
             "fromName": "iMailApp"

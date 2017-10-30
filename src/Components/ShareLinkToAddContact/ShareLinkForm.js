@@ -6,7 +6,7 @@ import {
     Button
 } from 'react-bootstrap'
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 import {addNewContact} from '../../state/contacts'
 
@@ -34,7 +34,7 @@ class ShareLinkForm extends React.Component {
     handleAddUser = (event) => {
         event.preventDefault();
 
-        if(!this.validateEmail(this.state.email)){
+        if (!this.validateEmail(this.state.email)) {
             alert('To nie jest poprawny e-mail!')
             return
         }
@@ -68,23 +68,26 @@ class ShareLinkForm extends React.Component {
                 margin: "0 auto",
                 marginTop: "6%"
             }}>
-                <h1>Sprawdź jak działamy</h1>
-                <form
-                    onSubmit={this.handleSubmit}
-                >
-                    imię i nazwisko <input
+                <form onSubmit={this.handleSubmit}>
+                    <h1>Sprawdź jak działamy!</h1><br/>
+                    <FormControl
+                        name="imię i nazwisko"
+                        type="text"
+                        placeholder="imię i nazwisko"
+                        value={this.state.name}
+                        onChange={this.handleNameInputChange}>
+                    </FormControl>
+                    <br/>
+
+                    <FormControl
+                    name="e-mail"
                     type="text"
-                    value={this.state.name}
-                    onChange={this.handleNameInputChange}
-                />
-                    adres e-mail <input
-                    type="text"
+                    placeholder="e-mail"
                     value={this.state.email}
-                    onChange={this.handleEmailInputChange}
-                />
-                    <button onClick={this.handleAddUser}>
-                        Wyślij
-                    </button>
+                    onChange={this.handleEmailInputChange}>
+                    </FormControl>
+                    <Button type={"submit"} bsStyle={"warning"} onClick={this.handleAddUser}>Zapisz się</Button>
+
                 </form>
             </div>
         )

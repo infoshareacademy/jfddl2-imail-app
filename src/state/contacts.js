@@ -12,7 +12,7 @@ export const init = () => dispatch => {
 
 
 export const addNewContact = (newUserData) => (dispatch, getState) => {
-    const nextIndex = getState().contacts.contactsList.length
+    const nextIndex = getState().contacts.contactsList.length || 0
     database().ref(`contacts/${nextIndex}`).set({
         ...newUserData,
         id: nextIndex

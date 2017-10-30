@@ -45,7 +45,7 @@ class UploadProfilePhoto extends Component {
     render() {
         return <div className="App">
             <input type="file" onChange={this.handleFileChange} />
-            <Button bsStyle={"warning"} onClick={this.handleFileUpload}>Upload</Button>
+            <Button bsStyle={"warning"} onClick={this.handleFileUpload}>Załaduj</Button>
             {/*{this.state.progress ? <progress value={this.state.progress} max="100"></progress> : null}*/}
         </div>
     }

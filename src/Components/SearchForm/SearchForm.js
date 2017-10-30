@@ -219,6 +219,7 @@ const mapDispatchToProps = dispatch => ({
     deleteContact: (userId) => dispatch(deleteContact(userId))
 })
 
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

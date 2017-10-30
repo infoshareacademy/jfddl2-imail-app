@@ -95,8 +95,6 @@ class AddForm extends React.Component {
                                     swojej bazy mailingowej.
                                     Pamiętaj im więcej tym lepiej...
                                     <br/><br/>
-                                    W niedługim czasie zamierzamy wprowadzić importowanie użytkowników z pliku.
-
                                 </Panel>
                             </div>
                         </Col>

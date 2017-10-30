@@ -169,6 +169,7 @@ class SearchForm extends React.Component {
                                                     {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
                                                         let groupName = keyValueArr[1]
+                                                        if(!(groups instanceof Array)) groups = Object.values(groups)
                                                         return <MenuItem
                                                             eventKey={groupId}
                                                         >

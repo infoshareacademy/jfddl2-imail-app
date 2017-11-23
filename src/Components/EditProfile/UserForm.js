@@ -26,18 +26,18 @@ class UserForm extends React.Component {
         onlyRecipe: false
     }
 
-    componentWillMount(){
-        let id = this.props.user.uid
-        database().ref(`user/${id}`).once('value')
-            .then((snapshot)=>{
-            this.setState({
-                displayNip: snapshot.val().displayNip,
-                displayCompanyName: snapshot.val().displayCompanyName,
-                displayAddress: snapshot.val().displayAddress,
-                displayNameFV: snapshot.val().displayName
-            })
-            })
-    }
+    // componentWillMount(){
+    //     let id = this.props.user.uid
+    //     database().ref(`user/${id}`).once('value')
+    //         .then((snapshot)=>{
+    //         this.setState({
+    //             displayCompanyName: snapshot.val().displayCompanyName,
+    //             displayAddress: snapshot.val().displayAddress,
+    //             displayNameFV: snapshot.val().displayName,
+    //             displayNip: snapshot.val().displayNip,
+    //         })
+    //         })
+    // }
 
     handleSave = (event) => {
         event.preventDefault()

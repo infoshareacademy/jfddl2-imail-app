@@ -6,10 +6,10 @@ import {connect} from 'react-redux'
 class FinalResult extends React.Component {
     state = {
         users: [],
-        // saveUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
         finalUser: null,
         addedUsers: JSON.parse(localStorage.getItem('addedUsers')) || [],
-        favourites: JSON.parse(localStorage.getItem('favourites')) || []
+        favourites: JSON.parse(localStorage.getItem('favourites')) || [],
+
     }
     handleSave = (event) => {
         event.preventDefault()
@@ -18,7 +18,8 @@ class FinalResult extends React.Component {
             email: this.props.finalUser.email,
             city: this.props.finalUser.city,
             id: this.props.finalUser.id,
-            gender: this.props.finalUser.gender
+            gender: this.props.finalUser.gender,
+
         })
     }
     handleAddFavUser = (event) => {
@@ -41,16 +42,15 @@ class FinalResult extends React.Component {
     }
 
     render() {
-        const finalUser = this.props.users.filter((user) => {
-            console.log( user.id, parseInt(this.props.match.params.id), user.id === parseInt(this.props.match.params.id))
-            return user.id === parseInt(this.props.match.params.id)
+        const finalUser = Object.entries(this.props.users).filter((user) => {
+            console.log( user[1].id, parseInt(this.props.match.params.id), user[1].id === parseInt(this.props.match.params.id))
+            return user[1].id === parseInt(this.props.match.params.id)
         })[0]
 
-        console.log(this.props.users, finalUser)
 
         const isFavouriteUser = () => {
-            let array = this.state.favourites.filter((favUser) => {
-                return favUser.id === finalUser.id
+            let array = Object.entries(this.state.favourites).filter((favUser) => {
+                return favUser.id === finalUser[1].id
             })
             return array.length > 0
         }
@@ -66,28 +66,28 @@ class FinalResult extends React.Component {
             }}><h2>Szczegóły Kontaktu</h2><br/>
                 {finalUser ?
                     <form style={{width: 400}} onSubmit={this.handleSave}>
-                        <img src={finalUser.avatar}/>
+                        <img src={finalUser[1].avatar}/>
 
                         <FormGroup controlId={'formControlsText'}>
                             <ControlLabel>{'ID'}</ControlLabel>
-                            <FormControl type={'text'} value={finalUser.id}/>
+                            <FormControl type={'text'} value={finalUser[1].id}/>
                         </FormGroup>
 
                         <FormGroup controlId={'formControlsText'}>
                             <ControlLabel>{'Imię i Nazwisko'}</ControlLabel>
-                            <FormControl type={'text'} value={finalUser.fullname}/>
+                            <FormControl type={'text'} value={finalUser[1].fullname}/>
                         </FormGroup>
                         <FormGroup controlId={'formControlsEmail'}>
                             <ControlLabel>{'Email'}</ControlLabel>
-                            <FormControl type={'email'} value={finalUser.email}/>
+                            <FormControl type={'email'} value={finalUser[1].email}/>
                         </FormGroup>
                         <FormGroup controlId={'formControlsCity'}>
                             <ControlLabel>{'Miasto'}</ControlLabel>
-                            <FormControl type={'text'} value={finalUser.city}/>
+                            <FormControl type={'text'} value={finalUser[1].city}/>
                         </FormGroup>
                         <FormGroup controlId={'formControlsGender'}>
                             <ControlLabel>{'Płeć'}</ControlLabel>
-                            <FormControl type={'text'} value={finalUser.gender}/>
+                            <FormControl type={'text'} value={finalUser[1].gender}/>
                         </FormGroup>
 
                         {isFavouriteUser() ?

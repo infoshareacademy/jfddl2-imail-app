@@ -20,8 +20,8 @@ import {database} from '../../firebase'
 import Newsletter from "../Newsletter/Newsletter";
 
 const filters = {
-    gender_male: gender => gender.male === 'Mężczyzna',
-    gender_female: gender => gender.female === 'Kobieta'
+    gender_male: gender => gender.male === 'mężczyzna',
+    gender_female: gender => gender.female === 'kobieta'
 }
 
 const filterGroups = [
@@ -56,28 +56,27 @@ class SearchForm extends React.Component {
     }
 
     genderHandler = (value) => {
-        console.log(value)
         this.setState({
             gender: value
         })
     }
 
-    mapStateToProps = props => (
-        <div>
-            <ul>
-                {
-                    props.messages && Object.entries(props.messages).reverse().map(
-                        ([key, value]) => (
-                            <li key={key}>
-                                <p>{value.content}</p>
-                                <p><strong>{value.author}</strong></p>
-                            </li>
-                        )
-                    )
-                }
-            </ul>
-        </div>
-    )
+    // mapStateToProps = props => (
+    //     <div>
+    //         <ul>
+    //             {
+    //                 props.messages && Object.entries(props.messages).reverse().map(
+    //                     ([key, value]) => (
+    //                         <li key={key}>
+    //                             <p>{value.content}</p>
+    //                             <p><strong>{value.author}</strong></p>
+    //                         </li>
+    //                     )
+    //                 )
+    //             }
+    //         </ul>
+    //     </div>
+    // )
 
 
     render() {
@@ -108,7 +107,7 @@ class SearchForm extends React.Component {
                                 </ToggleButton>
                                 <ToggleButton bsStyle="warning" value={'kobieta'}>Kobiety</ToggleButton>
 
-                                <ToggleButton bsStyle="warning" value={'meżczyzna'}>Mężczyźni</ToggleButton>
+                                <ToggleButton bsStyle="warning" value={'mężczyzna'}>Mężczyźni</ToggleButton>
                             </ToggleButtonGroup>
                         </ButtonToolbar>
                     </InputGroup>
@@ -138,33 +137,32 @@ class SearchForm extends React.Component {
                             </thead>
                             <tbody>
                             {
-                                this.props.contacts.filter((user) => {
-                                    return this.state.gender ? user.gender === this.state.gender : true
+                                Object.entries(this.props.contacts).filter((user) => {
+                                    return this.state.gender ? user[1].gender === this.state.gender : true
                                 }).filter((user) => {
-                                    return user.fullname.includes(this.state.searchInput)
-                                        || user.email.includes(this.state.searchInput)
-                                        || user.city.includes(this.state.searchInput)
-                                }).map(
-                                    ({id, fullname, city, gender, email, avatar, groups}, index) => (
+                                    return user[1].fullname.includes(this.state.searchInput)
+                                        || user[1].email.includes(this.state.searchInput)
+                                        || user[1].city.includes(this.state.searchInput)
+                                }).map((id ,index) => (
                                         <tr key={id}>
                                             <td>
-                                                {id}
+                                                {index + 1}
                                             </td>
                                             <td>
-                                                {fullname}
+                                                {id[1].fullname}
                                             </td>
                                             <td>
-                                                {email}
+                                                {id[1].email}
                                             </td>
                                             <td>
-                                                {city}
+                                                {id[1].city}
                                             </td>
                                             <td>
-                                                {gender}
+                                                {id[1].gender}
                                             </td>
                                             <td>
                                                 <DropdownButton onSelect={(event) => {
-                                                    this.props.toggleGroup(id, event)
+                                                    this.props.toggleGroup(id[0], event)
                                                 }} bsStyle="primary" title="Wybierz" id="bg-vertical-dropdown-1">
                                                     {Object.entries(this.props.groups).map((keyValueArr) => {
                                                         let groupId = keyValueArr[0]
@@ -172,22 +170,22 @@ class SearchForm extends React.Component {
                                                         return <MenuItem
                                                             eventKey={groupId}
                                                         >
-                                                            {groups && groups.includes(groupId) ? '✓ ' : ''}
+                                                            {id[1].groups && id[1].groups.includes(groupId) ? '✓ ' : ''}
                                                             {groupName}
                                                         </MenuItem>
                                                     })}
                                                 </DropdownButton>
                                             </td>
                                             <td>
-                                                <Button><Link to={'/final-results/' + id}>Zobacz</Link></Button>
+                                                <Button><Link to={'/final-results/' + id[1].id}>Zobacz</Link></Button>
                                             </td>
 
-                                            <td><Button onClick={()=>this.props.deleteContact(id)} bsStyle="danger"><Glyphicon
+                                            <td><Button onClick={()=>this.props.deleteContact(id[1].id)} bsStyle="danger"><Glyphicon
                                                 glyph="minus-sign"/> Usuń</Button>
                                             </td>
 
                                             <td>
-                                                <Newsletter email={email}/>
+                                                <Newsletter email={id[1].email}/>
                                             </td>
                                         </tr>
                                     )
@@ -212,9 +210,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    toggleGroup: (userId, groupId) => {
-        dispatch(toggleGroupToUser(userId, groupId))
-    },
+    toggleGroup: (userId, groupId) => {dispatch(toggleGroupToUser(userId, groupId))},
     deleteContact: (userId) => dispatch(deleteContact(userId))
 })
 

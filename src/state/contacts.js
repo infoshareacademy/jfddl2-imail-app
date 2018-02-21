@@ -22,10 +22,8 @@ export const addNewContact = (newUserData) => (dispatch, getState) => {
 }
 
 export const deleteContact = (userId) => (dispatch, getState) => {
-    database().ref(`contacts/${userId}`).set(null)
-        .then(() => {
-            alert('Usunięto kontakt!') // @TODO move alert to component by dispatching an action
-        })
+    database().ref(`contacts/${userId}/`).set(null)
+
 }
 
 
